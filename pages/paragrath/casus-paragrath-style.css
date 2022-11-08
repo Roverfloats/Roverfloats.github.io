@@ -1,0 +1,39 @@
+* {
+    margin: 0;
+}
+
+.container{
+    flex-grow: 1;
+    width: 100%;
+    background-color: red;
+    display: flex;
+    height: 100%;
+}
+
+.main{
+    background-color: lightgrey;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.p-container1{
+    width: max-content;
+    height: max-content;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    margin-left: 20px;
+}
+
+.p-container2{
+    width: max-content;
+    height: max-content;
+    margin-left: 20px;
+}
+
+.paragrath{
+    font-weight: 600;
+    color: rgb(0, 255, 251);
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+}

@@ -1,0 +1,35 @@
+.nav-text{
+    width: 80%;
+    margin: 10%;
+    font-size:25px;
+    color: white;
+    align-items: center;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+}
+
+.button-nav{
+    width: 80%;
+    height: 30px;
+    margin: 10px;
+    margin-left: 10%;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    transition: all 0.3s;
+    text-decoration: none;
+}
+.button-nav:hover{
+    background-color: rgb(0, 0, 200);
+    transition: all 0.3s;
+}
+
+.button-home{
+    margin-bottom: 40px;  
+}
+
+.nav{
+    background-color: rgb(0, 0, 100);
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+}

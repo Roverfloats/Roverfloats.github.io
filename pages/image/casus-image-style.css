@@ -1,0 +1,41 @@
+* {
+    margin: 0;
+}
+
+.container{
+    flex-grow: 1;
+    width: 100%;
+    background-color: red;
+    display: flex;
+    height: 100vh;
+}
+
+.main{
+    background-color: lightgrey;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+.all-images{
+    height: 150px;
+    width: 250px;
+    margin: 20px;
+}
+
+.image-1{
+    border: 5px lightgrey solid;
+}
+
+.image-2{
+    border: 5px white solid;
+    height: 250px;
+    width: 350px;
+}
+
+.image-3{
+    opacity: 50%;
+    border: 5px lightgrey solid;
+}

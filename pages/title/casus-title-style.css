@@ -1,0 +1,91 @@
+* {
+    margin: 0;
+}
+
+.overall{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.container{
+    flex-grow: 1;
+    width: 100%;
+    background-color: red;
+    display: flex;
+    height: 100%;
+}
+
+.main{
+    background-color: lightgrey;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.h1-container{
+    height: max-content;
+    width: max-content;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 20px;
+}
+
+.h2-container{
+    height: max-content;
+    width: max-content;
+    margin-bottom: 20px;
+    margin-left: 20px;
+}
+
+.h3-container{
+    height: max-content;
+    width: max-content;
+    margin-bottom: 20px;
+    margin-left: 20px;
+}
+
+.h4-container{
+    height: max-content;
+    width: max-content;
+    margin-bottom: 20px;
+    margin-left: 20px;
+}
+
+.h5-container{
+    height: max-content;
+    width: max-content;
+    margin-left: 20px;
+}
+
+.h1{
+    color: rgb(0, 255, 255);
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+}
+
+.h2{
+    color: rgb(0, 255, 255);
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+}
+
+.h3{
+    color: rgb(0, 255, 255);
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+}
+
+.h4{
+    color: rgb(0, 255, 255);
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+}
+
+.h5{
+    color: rgb(0, 255, 255);
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+}
+

@@ -1,0 +1,40 @@
+* {
+    margin: 0;
+}
+
+.overall{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.container{
+    flex-grow: 1;
+    width: 100%;
+    background-color: red;
+    display: flex;
+    height: 100%;
+}
+
+.main{
+    background-color: lightgrey;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.iframe-box{
+    margin: 40px;
+    border: solid white 5px;
+}
+
+.video-box{
+    margin: 40px;
+    border: solid white 5px;
+}
+
+.iframe-text{
+    margin: 40px;
+    font-family: 'Poppins', sans-serif;
+}
