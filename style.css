@@ -254,12 +254,12 @@ footer {
   }
 }
 
-@media only screen and (max-width: 450px) {
+/* @media only screen and (max-width: 450px) {
   .example-drawing-container {
     width: 100px;
   }
   
   .example-drawing {
     width: 100px;
-  }
-}
+  } */
+/* } */
