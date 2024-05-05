@@ -291,7 +291,7 @@ display: none;
 
 .explaination {
   width: calc(100% - 100px);
-  height: auto;
+  height: min-content;
   padding: 50px;
   text-align: center;
   display: flex;
@@ -311,6 +311,36 @@ display: none;
   font-size: large;
 }
 
-.test{
-  height: 1000px;
+.buffer{
+  height: 175px;
+}
+
+.all-drawings-container{
+  display: flex;
+  flex-wrap: wrap;
+  height: min-content;
+  padding: 50px;
+  justify-content: space-around
+}
+
+.drawing-container-vert{
+  width: 200px;
+  height: 300px;
+  padding: 20px;
+}
+
+.drawing-container-hor{
+  width: 300px;
+  height: 300px;
+  padding: 20px;
+}
+
+.drawing-vert{
+  width: 200px;
+  height: auto;
+}
+
+.drawing-hor{
+  width: 300px;
+  height: auto;
 }
