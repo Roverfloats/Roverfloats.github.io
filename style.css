@@ -199,6 +199,7 @@ display: none;
   width: 100%;
   margin: 10px 10px;
   justify-content: center;
+  align-items: center;
 }
 
 .example-drawing {
@@ -253,10 +254,6 @@ display: none;
 }
 
 @media only screen and (max-width: 650px) {
-  .example-drawing-container {
-    width: 120px;
-  }
-  
   .example-drawing {
     width: 120px;
   }
