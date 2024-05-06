@@ -323,24 +323,13 @@ display: none;
   justify-content: space-around
 }
 
-.drawing-container-vert{
-  width: 200px;
-  height: 300px;
-  padding: 20px;
-}
-
-.drawing-container-hor{
-  width: 300px;
-  height: 300px;
-  padding: 20px;
-}
-
-.drawing-vert{
-  width: 200px;
+.drawing-container{
+  width: 400px;
   height: auto;
+  padding: 20px;
 }
 
-.drawing-hor{
-  width: 300px;
+.drawing{
+  width: 400px;
   height: auto;
 }
