@@ -92,6 +92,7 @@ footer {
 .news-text {
   padding: 20px 50px;
   display: flex;
+  color: black;
   flex: 1;
   height: 100%;
 }
