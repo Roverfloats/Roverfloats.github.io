@@ -124,7 +124,6 @@ footer {
 
 .introduction {
   display: flex;
-  height: auto;
   padding: 50px;
 }
 
@@ -135,7 +134,7 @@ footer {
 
 .intro-img {
   width: 100%;
-  height: min-content;
+  height: auto;
 }
 
 .vertical{
