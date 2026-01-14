@@ -5,7 +5,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes >
-        <Route path="/Roverfloats.github.io" element={<Login/>} />
+        <Route path="/" element={<Login/>} />
       </Routes>
     </BrowserRouter>
   )
