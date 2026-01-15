@@ -5,14 +5,14 @@ import { fetchDailyTasks } from "../endpoints/DailyTasks"
 import { db } from "../firebase"
 import { collection, query, orderBy } from "firebase/firestore"
 
-function DailyTasksContainer() {
+function DailyTasksContainer({ActivatePopup, DeactivatePopup, reload, setReload}) {
     const [dailyTaskData, setDailyTaskData] = useState([])
     let navigate = useNavigate();
 
     useEffect(() => {
         let q = query(collection(db, "DailyTasks"), orderBy("completed", "asc"))
         fetchDailyTasks(q, setDailyTaskData)
-    }, [])
+    }, [reload])
 
     return (
         <div className="w-full h-auto px-[50px]">
@@ -25,11 +25,14 @@ function DailyTasksContainer() {
                 <DailyTask
                     key={task.id}
                     taskData={task}
+                    ActivatePopup={ActivatePopup}
+                    DeactivatePopup={DeactivatePopup}
+                    setReload={setReload}
                 />
             )
             :
             <div className="flex w-full justify-center">
-                <p>Youre done with your daily tasks!</p>
+                <p>something went wrong fetching the dailies.</p>
             </div>
             
         

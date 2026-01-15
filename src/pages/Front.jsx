@@ -2,7 +2,7 @@ import Header from '../Components/Header';
 import { useNavigate } from "react-router";
 import DailyTasksContainer from '../components/DailyTasksContainer';
 
-function Front() {
+function Front({ActivatePopup, DeactivatePopup, reload, setReload}) {
     let navigate = useNavigate();
 
   return (
@@ -10,7 +10,7 @@ function Front() {
         <Header/>
         <div className="w-full h-auto grid grid-cols-1 md:grid-cols-2">
           <div className="h-auto">
-            <DailyTasksContainer/>
+            <DailyTasksContainer ActivatePopup={ActivatePopup} DeactivatePopup={DeactivatePopup} reload={reload} setReload={setReload}/>
 
           </div>
           <div className="h-auto">Box 2</div>
