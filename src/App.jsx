@@ -16,7 +16,7 @@ function App() {
     setPopup(true);
   }
 
-  function DeactivatePopup(content){
+  function DeactivatePopup(){
     setPopupContent(null);
     setPopup(false);
   }

@@ -5,7 +5,7 @@ import { RemoveDailyTask, SetDailyTaskToDone } from "../endpoints/DailyTasks"
 function DailyTask({taskData, ActivatePopup, DeactivatePopup, setReload}) {
     async function HandleRemoveDailyTask(){
         await RemoveDailyTask(taskData.id)
-        DeactivatePopup
+        DeactivatePopup()
         setReload(prev => !prev)
     }
 
@@ -14,7 +14,6 @@ function DailyTask({taskData, ActivatePopup, DeactivatePopup, setReload}) {
         DeactivatePopup()
         setReload(prev => !prev)
     }
-
 
     return (
         <div className={`flex justify-between items-center h-[50px] w-full border-2 rounded-[15px] mb-[20px] ${taskData.completed ? "border-[#008800] bg-[#00BC00]" : "border-[#D0D0D0] bg-white" }`}>

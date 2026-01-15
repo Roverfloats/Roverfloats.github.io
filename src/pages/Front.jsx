@@ -1,9 +1,7 @@
 import Header from '../Components/Header';
-import { useNavigate } from "react-router";
 import DailyTasksContainer from '../components/DailyTasksContainer';
 
 function Front({ActivatePopup, DeactivatePopup, reload, setReload}) {
-    let navigate = useNavigate();
 
   return (
     <>
