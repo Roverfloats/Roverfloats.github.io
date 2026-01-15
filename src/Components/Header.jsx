@@ -6,14 +6,12 @@ import Settings from "../media/icons/SettingsWhite.png"
 function Header() {
     let navigate = useNavigate();
 
-    const phone = true
-
     return (
         <>
             <header className="flex items-center justify-between w-full h-[50px] bg-[#0096FF]">
                 <p className="ml-[50px] text-white">bitch</p>
                 <div className="h-[40px] w-auto">
-                    <button className="w-[40px] h-[40px] mr-[50px] cursor-pointer" onClick={() => navigate("/settings")}>
+                    <button className="w-[40px] h-[40px] mr-[50px]" onClick={() => navigate("/settings")}>
                         <img src={Settings} alt="" />
                     </button>
                 </div>

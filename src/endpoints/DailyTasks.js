@@ -15,7 +15,7 @@ export async function fetchDailyTasks (query, setData) {
             setData([])
             return([]);
         }
-        setData([data])
+        setData(data)
     } catch (err) {
         console.error("", err);
     }

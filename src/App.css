@@ -10,3 +10,7 @@ body{
   width: 100%;
   font-family: Verdana,Geneva,sans-serif; 
 }
+
+button{
+  cursor: pointer;
+}
