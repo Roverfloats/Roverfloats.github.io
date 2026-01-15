@@ -1,4 +1,3 @@
-import Button from "./base-components/Button";
 import { useNavigate } from "react-router";
 
 function Header() {
@@ -29,8 +28,6 @@ function Header() {
 
             <nav className="flex justify-center items-center w-full h-[50px]">
                 <div className="ml-[40px]"/>
-                <Button text={"Home"}/>
-                <Button text={"Writing"}/>
                 <div className="mr-[40px]"/>
             </nav>
         </>

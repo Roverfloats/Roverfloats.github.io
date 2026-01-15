@@ -4,11 +4,6 @@ import { useEffect } from 'react';
 
 function Front() {
     let navigate = useNavigate();
-    
-    useEffect(() => {
-        navigate("../")
-    }, []);
-
 
   return (
     <>
