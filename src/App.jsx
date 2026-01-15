@@ -24,16 +24,14 @@ function App() {
 
   return (
     <>
-      <BrowserRouter>
-        <Routes >
-          <Route path="/" element={<Login/>} />
-          <Route path="/frontpage" element={<Front ActivatePopup={ActivatePopup} DeactivatePopup={DeactivatePopup} reload={reload} setReload={setReload}/>} />
-          <Route path="/tasks" element={<ManageTasks reload={reload} setReload={setReload}/>} />
-          <Route path="/edit-daily-preset/:id" element={<></>} />
-          <Route path="/new-daily-preset" element={<></>} />
-          <Route path="/settings" element={<Settings/>} />
-        </Routes>
-      </BrowserRouter>
+      <Routes >
+        <Route path="/" element={<Login/>} />
+        <Route path="/frontpage" element={<Front ActivatePopup={ActivatePopup} DeactivatePopup={DeactivatePopup} reload={reload} setReload={setReload}/>} />
+        <Route path="/tasks" element={<ManageTasks reload={reload} setReload={setReload}/>} />
+        <Route path="/edit-daily-preset/:id" element={<></>} />
+        <Route path="/new-daily-preset" element={<></>} />
+        <Route path="/settings" element={<Settings/>} />
+      </Routes>
       {
         popup ?
         <Popup content={popupContent} setReload={setReload}/> :
