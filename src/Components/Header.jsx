@@ -1,5 +1,8 @@
 import { useNavigate } from "react-router";
 
+import Menu from "../media/icons/MenuWhite.png"
+import Settings from "../media/icons/SettingsWhite.png"
+
 function Header() {
     let navigate = useNavigate();
 
@@ -7,27 +10,18 @@ function Header() {
 
     return (
         <>
-            {phone ?
-                <header className="flex justify-between w-full h-[50px] bg-[#00c3ff]">
-                    <button className="bg-[#ff0000] w-[50px] h-[50px] mx-[50px]"></button>
-                    <p>text</p>
-                    <button className="bg-[#ff0000] w-[50px] h-[50px] mx-[50px]"></button>
-                </header>
-
-                :
-
-                <header className="flex justify-between w-full h-[50px] bg-[#00c3ff]">
-                    <p>text</p>
-                    <div>
-                        <button className="bg-[#ff0000] w-[50px] h-[50px] mx-[50px]"></button>
-                        <button className="bg-[#ff0000] w-[50px] h-[50px] mx-[50px]"></button>
-                    </div>
-                </header>
-            
-            }
+            <header className="flex items-center justify-between w-full h-[50px] bg-[#0096FF]">
+                <p className="ml-[50px] text-white">bitch</p>
+                <div className="h-[40px] w-auto">
+                    <button className="w-[40px] h-[40px] mr-[50px] cursor-pointer" onClick={() => navigate("/settings")}>
+                        <img src={Settings} alt="" />
+                    </button>
+                </div>
+            </header>
 
             <nav className="flex justify-center items-center w-full h-[50px]">
                 <div className="ml-[40px]"/>
+                <button onClick={() => navigate("/frontpage")} className="px-[20px] mx-[10px] w-auto h-[40px] bg-[#0096FF] text-white rounded-[15px]">Home</button>
                 <div className="mr-[40px]"/>
             </nav>
         </>
