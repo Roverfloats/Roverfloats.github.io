@@ -5,6 +5,7 @@ import Front from './pages/Front';
 import Settings from './pages/Settings';
 import { useState } from "react";
 import Popup from "./Components/Popup";
+import ManageTasks from "./pages/ManageTasks";
 
 function App() {
   const [popup, setPopup] = useState(false)
@@ -27,6 +28,9 @@ function App() {
         <Routes >
           <Route path="/" element={<Login/>} />
           <Route path="/frontpage" element={<Front ActivatePopup={ActivatePopup} DeactivatePopup={DeactivatePopup} reload={reload} setReload={setReload}/>} />
+          <Route path="/tasks" element={<ManageTasks reload={reload} setReload={setReload}/>} />
+          <Route path="/edit-daily-preset/:id" element={<></>} />
+          <Route path="/new-daily-preset" element={<></>} />
           <Route path="/settings" element={<Settings/>} />
         </Routes>
       </BrowserRouter>
