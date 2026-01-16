@@ -1,15 +1,44 @@
 import { useNavigate } from "react-router";
 import DailyTaskPreset from "./DailyTaskPreset";
+import { FetchData } from "../../endpoints/Functions";
+import { db } from "../../firebase";
+import { collection, query } from "firebase/firestore";
+import { useEffect, useState } from "react";
 
-function DailyTaskPresetOverview() {
+function DailyTaskPresetOverview({reload, setReload, setPopup, setPopupContent}) {
     let navigate = useNavigate();
+
+    const [dailyTaskPresetData, setDailyTaskPresetData] = useState([]);
+
+    useEffect(() => {
+        const Fetch = async () => {
+            let q = collection(db, "DailyTaskPresets");
+            q = query(q);
+
+            await FetchData(q, setDailyTaskPresetData);
+
+            console.log(dailyTaskPresetData)
+        }
+        Fetch();
+    }, [reload]);
+
 
     return (
         <div className="flex-1 h-auto px-[50px]">
             <div className="w-full h-[50px]">
                 <button className="h-[30px] text-[#0096FF]" onClick={() => navigate("/new-daily-preset")}>New Daily Task Preset +</button>
             </div>
-            <DailyTaskPreset taskPresetData={{id: "duyfbjhwse", title: "test", discription: "test test test"}}/>
+            {
+                dailyTaskPresetData.map((dailyTaskPreset) => (
+                    <DailyTaskPreset
+                        key={dailyTaskPreset.id}
+                        taskPresetData={dailyTaskPreset}
+                        setReload={setReload}
+                        setPopup={setPopup}
+                        setPopupContent={setPopupContent}
+                    />
+                ))
+            }
         </div>
     )
 }
