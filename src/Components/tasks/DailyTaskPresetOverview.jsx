@@ -16,8 +16,6 @@ function DailyTaskPresetOverview({reload, setReload, setPopup, setPopupContent})
             q = query(q);
 
             await FetchData(q, setDailyTaskPresetData);
-
-            console.log(dailyTaskPresetData)
         }
         Fetch();
     }, [reload]);

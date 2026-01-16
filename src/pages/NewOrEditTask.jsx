@@ -1,16 +1,62 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Header from '../Components/Header';
-import { useNavigate } from "react-router";
+import { useNavigate, useParams } from "react-router";
+import { AddDailyTaskPreset, GetDailyTaskPresetById, UpdateDailyTaskPreset } from '../endpoints/Functions';
 
-function NewOrEditTask() {
-    let navigate = useNavigate({});
+function NewOrEditTask({isDailyTaskPreset, editing}) {
+    const navigate = useNavigate({});
+    const {id: taskId} = useParams();
 
-    const [isDailyTask, setIsDailyTask] = useState(false);
+    const [isDailyTask, setIsDailyTask] = useState(isDailyTaskPreset);
     const [title, setTitle] = useState("");
-    const [discription, setDiscription] = useState("");
+    const [description, setdescription] = useState("");
+    const [errText, setErrText] = useState("");
 
-    function HandleSubmit() {
+    useEffect(() => {
+      const Fetch = async () => {
+        if(taskId){
+          var preexistingData = await GetDailyTaskPresetById(taskId);
+          setTitle(preexistingData.title)
+          setdescription(preexistingData.description)
+        }
+      }
+      Fetch();
+    }, []);
 
+    useEffect(() => {
+        const ResetErrText = async () => {
+          setErrText("")
+        }
+        ResetErrText();
+    }, [title, description]);
+
+    async function HandleSubmit() {
+      if(title == ""){
+        setErrText("Title cannot be empty.");
+        return
+      }
+      if(description == ""){
+        setErrText("description cannot be empty.");
+        return
+      }
+
+      if(isDailyTask){
+        if(editing){
+          if(!taskId){
+            console.error("")
+            return
+          }
+          UpdateDailyTaskPreset(taskId, title, description);
+          navigate("/tasks");
+          return
+        }
+        if(!editing){
+          await AddDailyTaskPreset(title, description);
+          navigate("/tasks");
+          return;
+        }
+
+      }
     }
 
 
@@ -19,22 +65,23 @@ function NewOrEditTask() {
         <Header/>
         <div className='w-full h-auto px-[50px]'>
           <p>Daily Task</p>
-          <label className="relative inline-block w-11 h-6 cursor-pointer">
-            <input type="checkbox" className="peer sr-only" onChange={(e) => setIsDailyTask(e.target.checked)} checked={isDailyTask}/>
+          <label className={`relative inline-block w-11 h-6 ${editing ? "cursor-not-allowed" : "cursor-pointer"}`}>
+            <input disabled={editing} type="checkbox" className="peer sr-only" onChange={(e) => setIsDailyTask(e.target.checked)} checked={isDailyTask}/>
             <span className="absolute inset-0 bg-gray-200 rounded-full transition-colors duration-200 ease-in-out peer-checked:bg-blue-600 dark:bg-[#D0D0D0] dark:peer-checked:bg-[#0096FF] peer-disabled:opacity-50 peer-disabled:pointer-events-none"></span>
             <span className="absolute top-1/2 start-0.5 -translate-y-1/2 size-5 bg-white rounded-full shadow-xs transition-transform duration-200 ease-in-out peer-checked:translate-x-full"></span>
           </label>
 
-          <div>
-            <p></p>
-            <input className='w-auto min-w-[100px] h-[30px] border-2 border-[#D0D0D0] bg-white rounded-[15px] p-[10px]' type="text" onChange={(e) => setTitle(e.target.value)}/>
+          <div className='mt-[20px]'>
+            <p>Title</p>
+            <input placeholder='Title...' value={title} className='w-auto min-w-[100px] h-[30px] border-2 border-[#D0D0D0] bg-white rounded-[15px] p-[10px]' type="text" onChange={(e) => setTitle(e.target.value)}/>
           </div>
-          <div>
-            <p></p>
-            <input type="text" />
+          <div className='my-[20px]'>
+            <p>description</p>
+            <input placeholder='description...' value={description} className='w-auto min-w-[100px] h-[30px] border-2 border-[#D0D0D0] bg-white rounded-[15px] p-[10px]' type="text" onChange={(e) => setdescription(e.target.value)}/>
           </div>
 
-          <div className="flex justify-between">
+          <p className='text-[#df121b]'>{errText}</p>
+          <div className="flex justify-between w-[400px]">
             <button className="w-[150px] h-[40px] border-2 border-[#D0D0D0] bg-white rounded-[15px]" onClick={() => navigate("/tasks")}>Cancel</button>
             <button className="w-[150px] h-[40px] bg-[#0096FF] text-white rounded-[15px]" onClick={() => HandleSubmit()}>Submit</button>
           </div>

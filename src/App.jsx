@@ -13,24 +13,14 @@ function App() {
   const [popupContent, setPopupContent] = useState(null)
   const [reload, setReload] = useState(null)
 
-  function ActivatePopup(content){
-    setPopupContent(content);
-    setPopup(true);
-  }
-
-  function DeactivatePopup(){
-    setPopupContent(null);
-    setPopup(false);
-  }
-
   return (
     <>
       <Routes >
         <Route path="/" element={<Login/>} />
-        <Route path="/frontpage" element={<Front ActivatePopup={ActivatePopup} DeactivatePopup={DeactivatePopup} reload={reload} setReload={setReload}/>} />
+        <Route path="/frontpage" element={<Front reload={reload} setReload={setReload} setPopup={setPopup} setPopupContent={setPopupContent}/>} />
         <Route path="/tasks" element={<ManageTasks reload={reload} setReload={setReload} setPopup={setPopup} setPopupContent={setPopupContent}/>} />
-        <Route path="/edit-daily-preset/:id" element={<NewOrEditTask/>} />
-        <Route path="/new-daily-preset" element={<NewOrEditTask/>} />
+        <Route path="/edit-daily-preset/:id" element={<NewOrEditTask isDailyTaskPreset={true} editing={true}/>} />
+        <Route path="/new-daily-preset" element={<NewOrEditTask isDailyTaskPreset={true} editing={false}/>} />
         <Route path="/settings" element={<Settings/>} />
       </Routes>
       {
