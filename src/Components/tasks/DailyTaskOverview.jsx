@@ -54,7 +54,6 @@ function DailyTaskOverview({setReload, reload, setPopup, setPopupContent}) {
 
     return (
         <div className="flex-1 h-auto px-[50px]">
-            <div className="border-2 border-[#D0D0D0] bg-white rounded-[15px] p-[20px]">
                 <div className="w-full h-[50px]">
                     <button className="h-[30px] text-[#0096FF]" onClick={() => navigate("/tasks")}>Manage Daily Tasks +</button>
                 </div>
@@ -69,7 +68,6 @@ function DailyTaskOverview({setReload, reload, setPopup, setPopupContent}) {
                         />
                     ))
                 }
-            </div>
         </div>
     )
 }
