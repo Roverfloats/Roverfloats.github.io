@@ -20,6 +20,7 @@ function NewOrEditTask({isDailyTaskPreset, editing}) {
           setdescription(preexistingData.description)
         }
       }
+      
       Fetch();
     }, []);
 
@@ -59,7 +60,6 @@ function NewOrEditTask({isDailyTaskPreset, editing}) {
       }
     }
 
-
   return (
     <>
         <Header/>
@@ -90,5 +90,4 @@ function NewOrEditTask({isDailyTaskPreset, editing}) {
 
   )
 }
-
 export default NewOrEditTask
