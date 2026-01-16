@@ -73,17 +73,17 @@ function NewOrEditTask({isDailyTaskPreset, editing}) {
 
           <div className='mt-[20px]'>
             <p>Title</p>
-            <input placeholder='Title...' value={title} className='w-auto min-w-[100px] h-[30px] border-2 border-[#D0D0D0] bg-white rounded-[15px] p-[10px]' type="text" onChange={(e) => setTitle(e.target.value)}/>
+            <input placeholder='Title...' value={title} className='bg-[#F4F4F4] w-auto min-w-[100px] h-[30px] border-2 border-[#D0D0D0] rounded-[15px] p-[10px]' type="text" onChange={(e) => setTitle(e.target.value)}/>
           </div>
           <div className='my-[20px]'>
             <p>description</p>
-            <input placeholder='description...' value={description} className='w-auto min-w-[100px] h-[30px] border-2 border-[#D0D0D0] bg-white rounded-[15px] p-[10px]' type="text" onChange={(e) => setdescription(e.target.value)}/>
+            <textarea placeholder='description...' value={description} className='bg-[#F4F4F4] w-auto min-w-[100px] h-[100px] border-2 border-[#D0D0D0] rounded-[15px] p-[10px]' onChange={(e) => setdescription(e.target.value)}/>
           </div>
 
           <p className='text-[#df121b]'>{errText}</p>
-          <div className="flex justify-between w-[400px]">
+          <div className="flex flex-col md:flex-row md:w-[400px] justify-between">
             <button className="w-[150px] h-[40px] border-2 border-[#D0D0D0] bg-white rounded-[15px]" onClick={() => navigate("/tasks")}>Cancel</button>
-            <button className="w-[150px] h-[40px] bg-[#0096FF] text-white rounded-[15px]" onClick={() => HandleSubmit()}>Submit</button>
+            <button className="w-[150px] h-[40px] bg-[#0096FF] text-white rounded-[15px] mt-[20px] md:mt-[0]" onClick={() => HandleSubmit()}>Submit</button>
           </div>
         </div>
     </>
