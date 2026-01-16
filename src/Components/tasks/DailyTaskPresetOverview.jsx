@@ -10,14 +10,15 @@ function DailyTaskPresetOverview({reload, setReload, setPopup, setPopupContent})
 
     const [dailyTaskPresetData, setDailyTaskPresetData] = useState([]);
 
-    useEffect(() => {
-        const Fetch = async () => {
-            let q = collection(db, "DailyTaskPresets");
-            q = query(q);
+    const FetchDailyTaskPresetData = async () => {
+        let presetQ = collection(db, "DailyTaskPresets");
+        presetQ = query(presetQ);
+        var newDailyTaskPresetData = await FetchData(presetQ);
+        setDailyTaskPresetData(newDailyTaskPresetData)
+    }
 
-            await FetchData(q, setDailyTaskPresetData);
-        }
-        Fetch();
+    useEffect(() => {
+        FetchDailyTaskPresetData();
     }, [reload]);
 
 

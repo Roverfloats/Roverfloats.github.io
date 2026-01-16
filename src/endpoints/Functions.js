@@ -1,8 +1,8 @@
-import { getDocs, deleteDoc, doc, serverTimestamp, addDoc, collection, getDoc, setDoc, query, where, updateDoc } from "firebase/firestore";
+import { getDocs, deleteDoc, doc, serverTimestamp, addDoc, collection, getDoc, setDoc, query, where, updateDoc, Timestamp } from "firebase/firestore";
 import { db } from "../firebase"
-import dayjs from "dayjs";
+import moment from "moment";
 
-export async function FetchData (query, setData) {
+export async function FetchData (query) {
   try {
       const snapshot = await getDocs(query);
 
@@ -12,10 +12,9 @@ export async function FetchData (query, setData) {
       }));
 
       if (data.length === 0) {
-          setData([])
           return([]);
       }
-      setData(data)
+      return(data)
   } catch (err) {
       console.error("Failed to fetch: ", err);
   }
@@ -120,7 +119,7 @@ export async function AddDailyTask(presetId, title, description) {
       title,
       description,
       completed: false,
-      day: dayjs().format("DD-MM-YYYY")
+      day: moment().format("DD-MM-YYYY")
     })
   } catch (error) {
     console.error("Failed to add daily task preset: ", error);
