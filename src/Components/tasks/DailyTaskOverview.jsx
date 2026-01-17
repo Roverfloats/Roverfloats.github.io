@@ -1,10 +1,11 @@
 import { useNavigate } from "react-router";
 import { useEffect, useState } from "react";
 import { collection, query } from "firebase/firestore";
-import { AddDailyTask, DeleteDailyTask, FetchData } from "../../endpoints/Functions";
 import { db } from "../../firebase";
 import DailyTask from "./DailyTask";
 import moment from "moment";
+import { AddDailyTask, DeleteDailyTask } from "../../endpoints/DailyTask";
+import { FetchData } from "../../endpoints/General";
 
 function DailyTaskOverview({setReload, reload, setPopup, setPopupContent}) {
     const navigate = useNavigate();
@@ -63,9 +64,9 @@ function DailyTaskOverview({setReload, reload, setPopup, setPopupContent}) {
             </div>
             <div className="divide-solid divide-y-2 divide-[#D0D0D0]">
                 <div>
-                    <p>Todays</p>
+                    <p>Today's daily tasks</p>
                     {
-                        dailyTaskData.filter(x => moment(x.day, "DD-MM-YYYY").isSame(moment(), "day")).map((dailyTask) => (
+                        dailyTaskData.filter(x => moment(x.day, "DD-MM-YYYY").isSame(moment(), "day") && !x.invisible).map((dailyTask) => (
                             <DailyTask
                                 key={dailyTask.id}
                                 taskData={dailyTask}

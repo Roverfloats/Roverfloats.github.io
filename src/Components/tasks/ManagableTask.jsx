@@ -11,7 +11,10 @@ function ManagableTask({taskData}) {
                 <div className="text-wrap">{taskData.location}</div>
             </div>
             <div>
-                <button onClick={() => navigate(`/edit-task/${taskData.id}`)} className="px-[20px] w-auto h-[40px] bg-[#0096FF] text-white rounded-[15px]">Edit Task</button>
+                <button
+                    onClick={() => navigate(`/edit-task/${taskData.id}`)}
+                    className="px-[20px] w-auto h-[40px] bg-[#0096FF] text-white rounded-[15px]"
+                >Edit Task</button>
             </div>
         </div>
     )

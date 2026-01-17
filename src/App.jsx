@@ -1,5 +1,5 @@
 import "./App.css";
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import Login from './pages/Login';
 import Front from './pages/Front';
 import Settings from './pages/Settings';
@@ -16,12 +16,51 @@ function App() {
   return (
     <>
       <Routes >
-        <Route path="/" element={<Login/>} />
-        <Route path="/frontpage" element={<Front reload={reload} setReload={setReload} setPopup={setPopup} setPopupContent={setPopupContent}/>} />
-        <Route path="/tasks" element={<ManageTasks reload={reload} setReload={setReload} setPopup={setPopup} setPopupContent={setPopupContent}/>} />
-        <Route path="/edit-daily-preset/:id" element={<NewOrEditTask isDailyTaskPreset={true} editing={true}/>} />
-        <Route path="/new-daily-preset" element={<NewOrEditTask isDailyTaskPreset={true} editing={false}/>} />
-        <Route path="/settings" element={<Settings/>} />
+        <Route
+          path="/"
+          element={<Login/>}
+        />
+
+        <Route
+          path="/frontpage"
+          element={<Front
+            reload={reload}
+            setReload={setReload}
+            setPopup={setPopup}
+            setPopupContent={setPopupContent}
+          />}
+        />
+
+        <Route
+          path="/tasks"
+          element={<ManageTasks
+            reload={reload}
+            setReload={setReload}
+            setPopup={setPopup}
+            setPopupContent={setPopupContent}
+          />} 
+        />
+
+        <Route
+          path="/edit-daily-preset/:id"
+          element={<NewOrEditTask
+            isDailyTaskPreset={true}
+            editing={true}
+          />}
+        />
+
+        <Route
+          path="/new-daily-preset"
+          element={<NewOrEditTask
+            isDailyTaskPreset={true}
+            editing={false}
+          />}
+        />
+        
+        <Route
+          path="/settings"
+          element={<Settings/>}
+        />
       </Routes>
       {
         popup ?

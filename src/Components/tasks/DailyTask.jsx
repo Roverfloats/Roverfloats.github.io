@@ -1,7 +1,7 @@
 import Cross from "../../media/icons/Cross.png"
 import Check from "../../media/icons/Check.png"
 import CompleteDailyTaskPopup from "../popups/CompleteDailyTaskPopup";
-import DeleteDailyTaskPopup from "../popups/DeleteDailyTaskPopup";
+import SetDailyTaskInvisiblePopup from "../popups/SetDailyTaskInvisiblePopup";
 
 function DailyTask({taskData, setReload, setPopupContent, setPopup}) {
 
@@ -15,13 +15,27 @@ function DailyTask({taskData, setReload, setPopupContent, setPopup}) {
             <div className="flex justify-end h-full w-[40%] ">
                 {
                     !taskData.completed ?
-                    <button onClick={() => {setPopupContent(<CompleteDailyTaskPopup setReload={setReload} setPopup={setPopup} taskData={taskData}/>), setPopup(true)}} className="w-[40px] h-[40px] mr-[20px]">
+                    <button 
+                        onClick={() => {setPopupContent(<CompleteDailyTaskPopup
+                            setReload={setReload}
+                            setPopup={setPopup}
+                            taskData={taskData}
+                        />), setPopup(true)}}
+                        className="w-[40px] h-[40px] mr-[20px]"
+                    >
                         <img src={Check} alt="" />
                     </button>
                     : <></>
                 }
 
-                <button onClick={() => {setPopupContent(<DeleteDailyTaskPopup setReload={setReload} setPopup={setPopup} taskData={taskData}/>), setPopup(true)}} className="w-[40px] h-[40px]">
+                <button
+                    onClick={() => {setPopupContent(<SetDailyTaskInvisiblePopup
+                        setReload={setReload}
+                        setPopup={setPopup}
+                        taskData={taskData}
+                    />), setPopup(true)}}
+                    className="w-[40px] h-[40px]"
+                >
                     <img src={Cross} alt="" />
                 </button>
             </div>

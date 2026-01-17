@@ -1,9 +1,9 @@
 import { useNavigate } from "react-router";
 import DailyTaskPreset from "./DailyTaskPreset";
-import { FetchData } from "../../endpoints/Functions";
 import { db } from "../../firebase";
 import { collection, query } from "firebase/firestore";
 import { useEffect, useState } from "react";
+import { FetchData } from "../../endpoints/General";
 
 function DailyTaskPresetOverview({reload, setReload, setPopup, setPopupContent}) {
     let navigate = useNavigate();
