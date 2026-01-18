@@ -7,6 +7,7 @@ import { useState } from "react";
 import Popup from "./Components/Popup";
 import ManageTasks from "./pages/ManageTasks";
 import NewOrEditTask from "./pages/NewOrEditTask";
+import AuthWrapper from "./AuthWrapper";
 
 function App() {
   const [popup, setPopup] = useState(false)
@@ -14,8 +15,8 @@ function App() {
   const [reload, setReload] = useState(null)
 
   return (
-    <>
-      <Routes >
+    <AuthWrapper>
+      <Routes>
         <Route
           path="/"
           element={<Login/>}
@@ -56,7 +57,7 @@ function App() {
             editing={false}
           />}
         />
-        
+
         <Route
           path="/settings"
           element={<Settings/>}
@@ -67,7 +68,7 @@ function App() {
         <Popup content={popupContent}/> :
         <></>
       }
-    </>
+    </AuthWrapper>
   )
 }
 

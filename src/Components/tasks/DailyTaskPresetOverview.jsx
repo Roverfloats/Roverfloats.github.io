@@ -23,7 +23,7 @@ function DailyTaskPresetOverview({reload, setReload, setPopup, setPopupContent})
 
 
     return (
-        <div className="flex-1 h-auto px-[50px]">
+        <div className="flex-1 h-auto px-[50px] mb-[20px]">
             <div className="w-full h-[50px]">
                 <button className="h-[30px] text-[#0096FF]" onClick={() => navigate("/new-daily-preset")}>New Daily Task Preset +</button>
             </div>
