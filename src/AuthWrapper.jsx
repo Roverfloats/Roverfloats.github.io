@@ -15,7 +15,6 @@ function AuthWrapper({ children, darkMode }) {
   var lightColors = {background: "#ffffff", blue: "#0096FF", text: "#000000", textOpposite: "#ffffff", border: "#D0D0D0", red: "#DF121B", inputBackground: "#F4F4F4", textOnBlue: "#ffffff", green: "#00BC00", greenBorder:"#008800"}
 
   useEffect(() => {
-    console.log("test")
     var jsonColors
     jsonColors = JSON.stringify(darkColors)
     localStorage.setItem("colors", jsonColors);

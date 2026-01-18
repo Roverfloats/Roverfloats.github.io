@@ -19,8 +19,7 @@ function Login({SetTheme}) {
       SetTheme();
       colors = JSON.parse(localStorage.getItem("colors"))
     }
-
-    console.log(colors)
+    
     const [password, setPassword] = useState("");
     const [passwordAttempt, setPasswordAttempt] = useState("");
     const [background, setBackground] = useState(NightPc);
