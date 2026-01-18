@@ -11,8 +11,16 @@ import DayPhone from "../media/images/phone-backgrounds/DayPhone.png"
 import NightPhone from "../media/images/phone-backgrounds/NightPhone.png"
 import moment from 'moment';
 
-function Login() {
+function Login({SetTheme}) {
+  localStorage.clear()
     var colors = JSON.parse(localStorage.getItem("colors"))
+
+    if(!colors){
+      SetTheme();
+      colors = JSON.parse(localStorage.getItem("colors"))
+    }
+
+    console.log(colors)
     const [password, setPassword] = useState("");
     const [passwordAttempt, setPasswordAttempt] = useState("");
     const [background, setBackground] = useState(NightPc);
