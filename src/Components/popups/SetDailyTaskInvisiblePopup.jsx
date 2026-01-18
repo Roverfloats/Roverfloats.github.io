@@ -1,9 +1,15 @@
-import { SetDailyTaskInvisible } from "../../endpoints/DailyTask";
+import moment from "moment";
+import { DeleteDailyTask, SetDailyTaskInvisible } from "../../endpoints/DailyTask";
 
 function SetDailyTaskInvisiblePopup({setReload, setPopup, taskData}) {
 
     async function HandleSetInvisible(){
-        await SetDailyTaskInvisible(taskData.id).then();
+        if(moment(taskData.day, "DD-MM-YYYY").isBefore(moment(), "day")){
+            await DeleteDailyTask(taskData.id).then();
+        }
+        else{
+            await SetDailyTaskInvisible(taskData.id).then();
+        }
         setPopup(false)
         setReload(prev => !prev);
     }

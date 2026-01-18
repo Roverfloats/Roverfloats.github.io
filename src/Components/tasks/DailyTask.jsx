@@ -4,8 +4,6 @@ import CompleteDailyTaskPopup from "../popups/CompleteDailyTaskPopup";
 import SetDailyTaskInvisiblePopup from "../popups/SetDailyTaskInvisiblePopup";
 
 function DailyTask({taskData, setReload, setPopupContent, setPopup}) {
-
-
     return (
         <div className={`items-end justify-between flex h-auto w-full border-2 rounded-[15px] mb-[20px] p-[20px] ${taskData.completed ? "border-[#008800] bg-[#00BC00]" : "border-[#D0D0D0] bg-white"}`}>
             <div className={`h-full w-[60%] ${taskData.completed ? "text-white" : "text-black"}`}>
