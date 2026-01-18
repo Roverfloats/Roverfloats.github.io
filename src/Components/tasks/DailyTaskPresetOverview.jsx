@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { FetchData } from "../../endpoints/General";
 
 function DailyTaskPresetOverview({reload, setReload, setPopup, setPopupContent}) {
+    var colors = JSON.parse(localStorage.getItem("colors"))
     let navigate = useNavigate();
 
     const [dailyTaskPresetData, setDailyTaskPresetData] = useState([]);
@@ -25,7 +26,13 @@ function DailyTaskPresetOverview({reload, setReload, setPopup, setPopupContent})
     return (
         <div className="flex-1 h-auto px-[50px] mb-[20px]">
             <div className="w-full h-[50px]">
-                <button className="h-[30px] text-[#0096FF]" onClick={() => navigate("/new-daily-preset")}>New Daily Task Preset +</button>
+                <button
+                    className="h-[30px]"
+                    style={{
+                        color: colors.blue
+                    }}
+                    onClick={() => navigate("/new-daily-preset")}
+                >New Daily Task Preset +</button>
             </div>
             {
                 dailyTaskPresetData.map((dailyTaskPreset) => (

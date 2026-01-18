@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+:root {
+  --main-bg-color: white;
+}
+
 body{
   padding: 0;
   margin: 0;
@@ -9,6 +13,7 @@ body{
   height: 100vh;
   width: 100%;
   font-family: Verdana,Geneva,sans-serif; 
+  background-color: var(--main-bg-color);
 }
 
 button{

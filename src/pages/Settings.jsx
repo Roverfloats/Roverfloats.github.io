@@ -1,13 +1,18 @@
 import Header from '../Components/Header';
-import { useNavigate } from "react-router";
 
-function Settings() {
-    let navigate = useNavigate();
+function Settings({setDarkMode, darkMode}) {
+  var colors = JSON.parse(localStorage.getItem("colors"))
 
   return (
     <>
         <Header/>
-        <div>settings
+        <div className='px-[50px]'>
+          <p style={{color: colors.text}}>darkmode on</p>
+          <input
+            type="checkbox"
+            onChange={(e) => setDarkMode(e.target.checked)}
+            checked={darkMode}
+          />
         </div>
     </>
 

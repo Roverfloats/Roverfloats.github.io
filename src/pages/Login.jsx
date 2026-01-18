@@ -12,6 +12,7 @@ import NightPhone from "../media/images/phone-backgrounds/NightPhone.png"
 import moment from 'moment';
 
 function Login() {
+    var colors = JSON.parse(localStorage.getItem("colors"))
     const [password, setPassword] = useState("");
     const [passwordAttempt, setPasswordAttempt] = useState("");
     const [background, setBackground] = useState(NightPc);
@@ -73,17 +74,34 @@ function Login() {
       className="flex justify-center items-center w-full h-full bg-cover"
       style={{ backgroundImage: `url(${background})` }}
     >
-      <div className="flex items-center flex-col p-[50px] w-auto h-auto bg-[#fff] rounded-[15px]">
-        <p className='text-[25px] mb-[40px]'>Enter Password</p>
-        {wrongPassword ? <p className='text-[#DF121B]'>Password is wrong</p> : <></> }
+      <div
+        className="flex items-center flex-col p-[50px] w-auto h-auto rounded-[15px]"
+        style={{backgroundColor: colors.background,}}
+      >
+        <p
+          className='text-[25px] mb-[40px]'
+          style={{
+            color: colors.text,
+          }}
+        >Enter Password</p>
+        {wrongPassword ? <p style={{color: colors.red}}>Password is wrong</p> : <></> }
         <input
           type="password"
           onChange={(e) => {setPasswordAttempt(e.target.value), setWrongPassword(false)}}
-          className='w-[200px] h-[40px] border-2 border-[#D0D0D0] rounded-[15px] mb-[20px] p-[10px] bg-[#F4F4F4]'
+          className='w-[200px] h-[40px] border-2 rounded-[15px] mb-[20px] p-[10px]'
+          style={{
+            color: colors.text,
+            borderColor: colors.border,
+            backgroundColor: colors.inputBackground,
+          }}
         />
         <button
           onClick={() => SignIn()}
-          className="w-[200px] h-[40px] bg-[#0096FF] text-white rounded-[15px]"
+          className="w-[200px] h-[40px] rounded-[15px]"
+          style={{
+            color: colors.textOnBlue,
+            backgroundColor: colors.blue,
+          }}
         >Enter</button>
       </div>
     </div>

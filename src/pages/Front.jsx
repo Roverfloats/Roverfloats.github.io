@@ -15,7 +15,8 @@ function Front({reload, setReload, setPopup, setPopupContent}) {
               setPopupContent={setPopupContent}
             />
           </div>
-          <div className=''></div>
+          <div className=''>
+          </div>
           <div className='md:col-span-2'></div>
         </div>
 
