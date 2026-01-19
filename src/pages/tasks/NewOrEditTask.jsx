@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import Header from '../Components/Header';
+import Header from '../../Components/Header';
 import { useNavigate, useParams } from "react-router";
-import { AddDailyTaskPreset, GetDailyTaskPresetById, UpdateDailyTaskPreset } from '../endpoints/DailyTaskPreset';
+import { AddDailyTaskPreset, GetDailyTaskPresetById, UpdateDailyTaskPreset } from '../../endpoints/DailyTaskPreset';
 
 function NewOrEditTask({isDailyTaskPreset, editing}) {
     const navigate = useNavigate({});

@@ -31,7 +31,7 @@ function Header() {
                 </div>
             </header>
 
-            <nav className="flex justify-center items-center w-full h-[50px]">
+            <nav className="flex md:justify-center items-center w-full h-[50px] overflow-x-scroll no-scrollbar">
                 <div className="ml-[40px]"/>
                 <button
                     onClick={() => navigate("/frontpage")} 
@@ -49,7 +49,14 @@ function Header() {
                         color: colors.textOnBlue,
                     }}
                 >tasks</button>
-                <div className="mr-[40px]"/>
+                <button
+                    onClick={() => navigate("/writing")}
+                    className="px-[20px] mx-[10px] w-auto h-[40px] rounded-[15px]"
+                    style={{
+                        backgroundColor: colors.blue,
+                        color: colors.textOnBlue,
+                    }}
+                >Writing</button>
             </nav>
         </>
     )
