@@ -13,68 +13,68 @@ import moment from 'moment';
 
 function Login({SetTheme}) {
   localStorage.clear()
-    var colors = JSON.parse(localStorage.getItem("colors"))
+  var colors = JSON.parse(localStorage.getItem("colors"))
 
-    if(!colors){
-      SetTheme();
-      colors = JSON.parse(localStorage.getItem("colors"))
+  if(!colors){
+    SetTheme();
+    colors = JSON.parse(localStorage.getItem("colors"))
+  }
+  
+  const [password, setPassword] = useState("");
+  const [passwordAttempt, setPasswordAttempt] = useState("");
+  const [background, setBackground] = useState(NightPc);
+  const [wrongPassword, setWrongPassword] = useState(false);
+  let navigate = useNavigate();
+
+  useEffect(() => {
+    //fetch password
+    const Fetch = async () => {
+      let q = collection(db, "Password");
+      q = query(q);
+      var password = await FetchData(q);
+      setPassword(password[0].entry)
     }
-    
-    const [password, setPassword] = useState("");
-    const [passwordAttempt, setPasswordAttempt] = useState("");
-    const [background, setBackground] = useState(NightPc);
-    const [wrongPassword, setWrongPassword] = useState(false);
-    let navigate = useNavigate();
+    Fetch();
+    localStorage.setItem("loggedIn", false);
 
-    useEffect(() => {
-      //fetch password
-      const Fetch = async () => {
-        let q = collection(db, "Password");
-        q = query(q);
-        var password = await FetchData(q);
-        setPassword(password[0].entry)
+    //set background image
+    const startDay = moment('10:00', 'HH:mm');
+    const startNight = moment('20:00', 'HH:mm');
+
+    if (moment().isBetween(startDay, startNight, 'minute', '[]')) {
+      if(window.innerWidth < 500)
+        setBackground(DayPhone)
+      else{
+        setBackground(DayPc)
       }
-      Fetch();
-      localStorage.setItem("loggedIn", false);
-
-      //set background image
-      const startDay = moment('10:00', 'HH:mm');
-      const startNight = moment('20:00', 'HH:mm');
-
-      if (moment().isBetween(startDay, startNight, 'minute', '[]')) {
-        if(window.innerWidth < 500)
-          setBackground(DayPhone)
-        else{
-          setBackground(DayPc)
-        }
-      } else {
-        if(window.innerWidth < 500)
-          setBackground(NightPhone)
-        else{
-          setBackground(NightPc)
-        }
+    } else {
+      if(window.innerWidth < 500)
+        setBackground(NightPhone)
+      else{
+        setBackground(NightPc)
       }
-    }, []);
-
-    useEffect(() => {
-      setWrongPassword(false)
-    }, [passwordAttempt]);
-
-    function SignIn() {
-      if(bcrypt.compareSync(passwordAttempt, password)){
-        localStorage.setItem("loggedIn", true);
-        navigate("/frontpage");
-        return;
-      }
-      setWrongPassword(true);
     }
+  }, []);
 
-    ////code to generate new password
-    // function hashtest(){
-    //   const salt = bcrypt.genSaltSync();
-    //   const hashed = bcrypt.hashSync("password", salt);
-    //   cons ole.log(hashed); //broken to remove from searches, i hate leaving console logs
-    // }
+  useEffect(() => {
+    setWrongPassword(false)
+  }, [passwordAttempt]);
+
+  function SignIn() {
+    if(bcrypt.compareSync(passwordAttempt, password)){
+      localStorage.setItem("loggedIn", true);
+      navigate("/frontpage");
+      return;
+    }
+    setWrongPassword(true);
+  }
+
+  ////code to generate new password
+  // function hashtest(){
+  //   const salt = bcrypt.genSaltSync();
+  //   const hashed = bcrypt.hashSync("password", salt);
+  //   cons ole.log(hashed); //broken to remove from searches, i hate leaving console logs
+  // }
 
   return (
     <div
