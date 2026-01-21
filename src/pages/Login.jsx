@@ -11,15 +11,7 @@ import DayPhone from "../media/images/phone-backgrounds/DayPhone.png"
 import NightPhone from "../media/images/phone-backgrounds/NightPhone.png"
 import moment from 'moment';
 
-function Login({SetTheme}) {
-  localStorage.clear()
-  var colors = JSON.parse(localStorage.getItem("colors"))
-
-  if(!colors){
-    SetTheme();
-    colors = JSON.parse(localStorage.getItem("colors"))
-  }
-  
+function Login() {  
   const [password, setPassword] = useState("");
   const [passwordAttempt, setPasswordAttempt] = useState("");
   const [background, setBackground] = useState(NightPc);
@@ -82,33 +74,20 @@ function Login({SetTheme}) {
       style={{ backgroundImage: `url(${background})` }}
     >
       <div
-        className="flex items-center flex-col p-[50px] w-auto h-auto rounded-[15px]"
-        style={{backgroundColor: colors.background,}}
+        className="flex items-center flex-col p-[50px] w-auto h-auto rounded-[15px] bg-white dark:bg-[#171717]"
       >
         <p
-          className='text-[25px] mb-[40px]'
-          style={{
-            color: colors.text,
-          }}
+          className='text-[25px] mb-[40px] text-black dark:text-white'
         >Enter Password</p>
         {wrongPassword ? <p style={{color: colors.red}}>Password is wrong</p> : <></> }
         <input
           type="password"
           onChange={(e) => {setPasswordAttempt(e.target.value), setWrongPassword(false)}}
-          className='w-[200px] h-[40px] border-2 rounded-[15px] mb-[20px] p-[10px]'
-          style={{
-            color: colors.text,
-            borderColor: colors.border,
-            backgroundColor: colors.inputBackground,
-          }}
+          className='w-[200px] h-[40px] border-2 rounded-[15px] mb-[20px] p-[10px] text-black dark:text-white border-[#D0D0D0] dark:border-black bg-[#F4F4F4] dark:bg-[#292929]'
         />
         <button
           onClick={() => SignIn()}
-          className="w-[200px] h-[40px] rounded-[15px]"
-          style={{
-            color: colors.textOnBlue,
-            backgroundColor: colors.blue,
-          }}
+          className="w-[200px] h-[40px] rounded-[15px] text-white bg-[#0096FF] dark:bg-[#0065AD]"
         >Enter</button>
       </div>
     </div>

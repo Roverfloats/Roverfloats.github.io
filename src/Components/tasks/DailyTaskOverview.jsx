@@ -8,7 +8,6 @@ import { AddDailyTask, DeleteDailyTask } from "../../endpoints/DailyTask";
 import { FetchData } from "../../endpoints/General";
 
 function DailyTaskOverview({setReload, reload, setPopup, setPopupContent}) {
-    var colors = JSON.parse(localStorage.getItem("colors"))
     const navigate = useNavigate();
 
     const [dailyTaskData, setDailyTaskData] = useState([]);
@@ -62,16 +61,13 @@ function DailyTaskOverview({setReload, reload, setPopup, setPopupContent}) {
         <div className="flex-1 h-auto px-[50px]">
             <div className="w-full h-[50px]">
                 <button
-                    className="h-[30px]" onClick={() => navigate("/tasks")}
-                    style={{color: colors.blue}}
+                    className="h-[30px] text-[#0096FF] dark:text-[#0065AD]"
+                    onClick={() => navigate("/tasks")}
                 >Manage Daily Tasks +</button>
             </div>
-            <div
-                className="divide-solid divide-y-2 divide-[var(--divide-color)]"
-                style={{ '--divide-color': colors.border }}
-            >
+            <div className="divide-solid divide-y-2 divide-[#D0D0D0] dark:divide-[#black]">
                 <div>
-                    <p style={{color: colors.text}}>Today's daily tasks</p>
+                    <p className="text-black dark:text-white">Today's daily tasks</p>
                     {
                         dailyTaskData.filter(x => moment(x.day, "DD-MM-YYYY").isSame(moment(), "day") && !x.invisible).map((dailyTask) => (
                             <DailyTask
