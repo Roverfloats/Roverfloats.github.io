@@ -65,7 +65,7 @@ function DailyTaskOverview({setReload, reload, setPopup, setPopupContent}) {
                     onClick={() => navigate("/tasks")}
                 >Manage Daily Tasks +</button>
             </div>
-            <div className="divide-solid divide-y-2 divide-[#D0D0D0] dark:divide-[#black]">
+            <div className="divide-solid divide-y-2 divide-[#D0D0D0] dark:divide-[black]">
                 <div>
                     <p className="text-black dark:text-white">Today's daily tasks</p>
                     {
