@@ -24,15 +24,12 @@ function App() {
     q = query(q);
     var settingsData = await FetchData(q);
     setSettings(settingsData)
-
     setDarkMode(settingsData?.find(x => x.type === "DarkMode")?.value)
   }
 
   useEffect(() => {
     Fetch()
   }, [reload]);
-
-
 
   return (
     <div className={`h-full w-full bg-white dark:bg-[#171717] ${darkMode ? "dark" : ""}`}>
@@ -91,7 +88,6 @@ function App() {
         }
       </AuthWrapper>
     </div>
-
   )
 }
 
