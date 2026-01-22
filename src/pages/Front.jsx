@@ -1,5 +1,5 @@
-import Header from '../Components/Header';
-import DailyTaskOverview from '../Components/tasks/DailyTaskOverview';
+import Header from '../components/Header';
+import DailyTaskOverview from '../components/tasks/DailyTaskOverview';
 
 function Front({reload, setReload, setPopup, setPopupContent}) {
 
