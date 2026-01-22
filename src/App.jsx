@@ -3,8 +3,8 @@ import { Routes, Route } from 'react-router-dom';
 import Login from './pages/Login';
 import Front from './pages/Front';
 import Settings from './pages/Settings';
-import { useEffect, useState } from "react";
-import Popup from "./Components/Popup";
+import { useState } from "react";
+import Popup from "./components/Popup";
 import ManageTasks from "./pages/ManageTasks";
 import NewOrEditTask from "./pages/NewOrEditTask";
 import AuthWrapper from "./AuthWrapper";
@@ -13,13 +13,12 @@ function App() {
   const [popup, setPopup] = useState(false)
   const [popupContent, setPopupContent] = useState(null)
   const [reload, setReload] = useState(null)
-
-  var darkColors = {background: "#171717", blue: "#0065AD", text: "#ffffff", textOpposite: "#000000", border: "#000000", red: "#DF121B", inputBackground: "#292929", textOnBlue: "#ffffff", green: "#008800", greenBorder:"#004700"}
-  var lightColors = {background: "#ffffff", blue: "#0096FF", text: "#000000", textOpposite: "#ffffff", border: "#D0D0D0", red: "#DF121B", inputBackground: "#F4F4F4", textOnBlue: "#ffffff", green: "#00BC00", greenBorder:"#008800"}
-
   const [darkMode, setDarkMode] = useState(false)
 
 
+
+
+  
   return (
     <div className={`h-full w-full bg-white dark:bg-[#171717] ${darkMode ? "dark" : ""}`}>
       <AuthWrapper>

@@ -1,4 +1,4 @@
-import Header from '../Components/Header';
+import Header from '../components/Header';
 
 function Settings({setDarkMode, darkMode}) {
   return (

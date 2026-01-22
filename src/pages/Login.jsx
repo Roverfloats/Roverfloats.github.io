@@ -1,4 +1,4 @@
-import { collection, query } from 'firebase/firestore';
+import { collection, query, where } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import { useNavigate } from "react-router";
 import { db } from '../firebase';
@@ -21,10 +21,13 @@ function Login() {
   useEffect(() => {
     //fetch password
     const Fetch = async () => {
-      let q = collection(db, "Password");
+    var q = query(
+      collection(db, "Settings"),
+      where("type", "==", "Password")
+    );
       q = query(q);
       var password = await FetchData(q);
-      setPassword(password[0].entry)
+      setPassword(password[0].value)
     }
     Fetch();
     localStorage.setItem("loggedIn", false);
@@ -79,7 +82,7 @@ function Login() {
         <p
           className='text-[25px] mb-[40px] text-black dark:text-white'
         >Enter Password</p>
-        {wrongPassword ? <p style={{color: colors.red}}>Password is wrong</p> : <></> }
+        {wrongPassword ? <p className='text-[#DF121B]'>Password is wrong</p> : <></> }
         <input
           type="password"
           onChange={(e) => {setPasswordAttempt(e.target.value), setWrongPassword(false)}}
