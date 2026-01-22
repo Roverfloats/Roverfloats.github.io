@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router";
-import DeleteDailyTaskPresetPopup from "../popups/DeleteDailyTaskPresetPopup";
+import DeleteRecurringTaskPresetPopup from "../popups/DeleteRecurringTaskPresetPopup";
 
-function DailyTaskPreset({taskPresetData, setReload, setPopup, setPopupContent}) {
+function RecurringTaskPreset({taskPresetData, setReload, setPopup, setPopupContent}) {
     const navigate = useNavigate();
 
     return (
@@ -12,11 +12,11 @@ function DailyTaskPreset({taskPresetData, setReload, setPopup, setPopupContent})
             </div>
             <div className="flex flex-col md:flex-row md:w-[400px] md:justify-end">
                 <button
-                    onClick={() => navigate(`/edit-daily-preset/${taskPresetData.id}`)}
+                    onClick={() => navigate(`/edit-recurring-task-preset/${taskPresetData.id}`)}
                     className="px-[20px] w-auto min-h-[40px] rounded-[15px] my-[10px] md:my-[0] md:mr-[10px] bg-[#0096FF] dark:bg-[#0065AD] text-white"
                 >Edit Preset</button>
                 <button
-                    onClick={() => {setPopupContent(<DeleteDailyTaskPresetPopup
+                    onClick={() => {setPopupContent(<DeleteRecurringTaskPresetPopup
                         setReload={setReload}
                         setPopup={setPopup}
                         taskPresetData={taskPresetData}/>), setPopup(true)}
@@ -27,4 +27,4 @@ function DailyTaskPreset({taskPresetData, setReload, setPopup, setPopupContent})
     )
 }
 
-export default DailyTaskPreset
+export default RecurringTaskPreset

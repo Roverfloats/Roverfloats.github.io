@@ -1,5 +1,5 @@
 import Header from '../components/Header';
-import DailyTaskOverview from '../components/tasks/DailyTaskOverview';
+import RecurringTaskOverview from '../components/tasks/RecurringTaskOverview';
 
 function Front({reload, setReload, setPopup, setPopupContent}) {
 
@@ -8,7 +8,7 @@ function Front({reload, setReload, setPopup, setPopupContent}) {
         <Header/>
         <div className="w-full h-auto grid grid-cols-1 md:grid-cols-2">
           <div className=''>
-            <DailyTaskOverview
+            <RecurringTaskOverview
               setReload={setReload}
               reload={reload}
               setPopup={setPopup}

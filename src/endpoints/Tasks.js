@@ -2,9 +2,9 @@ import { deleteDoc, doc, addDoc, collection, updateDoc } from "firebase/firestor
 import { db } from "../firebase"
 import moment from "moment";
 
-export async function AddDailyTask(presetId, title, description) {
+export async function AddTask(presetId, title, description) {
   try {
-    await addDoc(collection(db, "DailyTasks"), {
+    await addDoc(collection(db, "Tasks"), {
       presetId,
       title,
       description,
@@ -13,14 +13,14 @@ export async function AddDailyTask(presetId, title, description) {
       day: moment().format("DD-MM-YYYY")
     })
   } catch (error) {
-    console.error("Failed to add daily task preset: ", error);
+    console.error("Failed to add task: ", error);
   }
 }
 
-export async function UpdateDailyTask(presetId, taskId, title, description) {
+export async function UpdateTask(presetId, taskId, title, description) {
   try {
-    const dailyTaskPresetRef = doc(db, "DailyTasks", taskId);
-    await updateDoc(dailyTaskPresetRef, {
+    const TaskRef = doc(db, "Tasks", taskId);
+    await updateDoc(TaskRef, {
       presetId,
       title,
       description,
@@ -30,10 +30,10 @@ export async function UpdateDailyTask(presetId, taskId, title, description) {
   }
 }
 
-export async function CompleteDailyTask(taskId) {
+export async function CompleteTask(taskId) {
   try {
-    const dailyTaskPresetRef = doc(db, "DailyTasks", taskId);
-    await updateDoc(dailyTaskPresetRef, {
+    const taskRef = doc(db, "Tasks", taskId);
+    await updateDoc(taskRef, {
       completed: true,
     })
   } catch (error) {
@@ -41,10 +41,10 @@ export async function CompleteDailyTask(taskId) {
   }
 }
 
-export async function SetDailyTaskInvisible(taskId) {
+export async function SetTaskInvisible(taskId) {
   try {
-    const dailyTaskPresetRef = doc(db, "DailyTasks", taskId);
-    await updateDoc(dailyTaskPresetRef, {
+    const taskRef = doc(db, "Tasks", taskId);
+    await updateDoc(taskRef, {
       invisible: true
     })
   } catch (error) {
@@ -52,11 +52,11 @@ export async function SetDailyTaskInvisible(taskId) {
   }
 }
 
-export async function DeleteDailyTask(docId) {
+export async function DeleteTask(docId) {
   if (!docId)
     console.error("no docId provided.");
   try {
-    await deleteDoc(doc(db, "DailyTasks", docId));
+    await deleteDoc(doc(db, "Tasks", docId));
   } catch (error) {
     console.error("Couldnt Remove task: ", error);
   }

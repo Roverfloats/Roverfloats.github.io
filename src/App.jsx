@@ -61,17 +61,17 @@ function App() {
           />
 
           <Route
-            path="/edit-daily-preset/:id"
+            path="/edit-recurring-task-preset/:id"
             element={<NewOrEditTask
-              isDailyTaskPreset={true}
+              isRecurringTaskPreset={true}
               editing={true}
             />}
           />
 
           <Route
-            path="/new-daily-preset"
+            path="/new-recurring-task-preset"
             element={<NewOrEditTask
-              isDailyTaskPreset={true}
+              isRecurringTaskPreset={true}
               editing={false}
             />}
           />

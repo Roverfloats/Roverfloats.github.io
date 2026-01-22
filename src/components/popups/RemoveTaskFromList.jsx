@@ -1,15 +1,13 @@
 import moment from "moment";
-import { DeleteDailyTask, SetDailyTaskInvisible } from "../../endpoints/DailyTask";
+import { DeleteTask, SetTaskInvisible } from "../../endpoints/Tasks";
 
-function SetDailyTaskInvisiblePopup({setReload, setPopup, taskData}) {
-    var colors = JSON.parse(localStorage.getItem("colors"))
-
+function RemoveTaskFromList({setReload, setPopup, taskData}) {
     async function HandleSetInvisible(){
         if(moment(taskData.day, "DD-MM-YYYY").isBefore(moment(), "day")){
-            await DeleteDailyTask(taskData.id).then();
+            await DeleteTask(taskData.id).then();
         }
         else{
-            await SetDailyTaskInvisible(taskData.id).then();
+            await SetTaskInvisible(taskData.id).then();
         }
         setPopup(false)
         setReload(prev => !prev);
@@ -33,4 +31,4 @@ function SetDailyTaskInvisiblePopup({setReload, setPopup, taskData}) {
     )
 }
 
-export default SetDailyTaskInvisiblePopup
+export default RemoveTaskFromList

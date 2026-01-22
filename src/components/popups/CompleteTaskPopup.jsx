@@ -1,8 +1,8 @@
-import { CompleteDailyTask } from "../../endpoints/DailyTask";
+import { CompleteTask } from "../../endpoints/Tasks";
 
-function CompleteDailyTaskPopup({setReload, setPopup, taskData}) {
+function CompleteTaskPopup({setReload, setPopup, taskData}) {
     async function HandleComplete(){
-        await CompleteDailyTask(taskData.id).then();
+        await CompleteTask(taskData.id).then();
         setPopup(false);
         setReload(prev => !prev);
     }
@@ -24,4 +24,4 @@ function CompleteDailyTaskPopup({setReload, setPopup, taskData}) {
     )
 }
 
-export default CompleteDailyTaskPopup
+export default CompleteTaskPopup

@@ -1,9 +1,9 @@
 import Cross from "../../media/icons/Cross.png"
 import Check from "../../media/icons/Check.png"
-import CompleteDailyTaskPopup from "../popups/CompleteDailyTaskPopup";
-import SetDailyTaskInvisiblePopup from "../popups/SetDailyTaskInvisiblePopup";
+import CompleteTaskPopup from "../popups/CompleteTaskPopup"
+import RemoveTaskFromList from "../popups/RemoveTaskFromList"
 
-function DailyTask({taskData, setReload, setPopupContent, setPopup}) {
+function Task({taskData, setReload, setPopupContent, setPopup}) {
     return (
         <div
             className={`items-end justify-between flex h-auto w-full border-2 rounded-[15px] mb-[20px] p-[20px] 
@@ -17,7 +17,7 @@ function DailyTask({taskData, setReload, setPopupContent, setPopup}) {
                 {
                     !taskData.completed ?
                     <button 
-                        onClick={() => {setPopupContent(<CompleteDailyTaskPopup
+                        onClick={() => {setPopupContent(<CompleteTaskPopup
                             setReload={setReload}
                             setPopup={setPopup}
                             taskData={taskData}
@@ -30,7 +30,7 @@ function DailyTask({taskData, setReload, setPopupContent, setPopup}) {
                 }
 
                 <button
-                    onClick={() => {setPopupContent(<SetDailyTaskInvisiblePopup
+                    onClick={() => {setPopupContent(<RemoveTaskFromList
                         setReload={setReload}
                         setPopup={setPopup}
                         taskData={taskData}
@@ -44,4 +44,4 @@ function DailyTask({taskData, setReload, setPopupContent, setPopup}) {
     )
 }
 
-export default DailyTask
+export default Task

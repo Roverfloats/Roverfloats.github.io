@@ -1,14 +1,13 @@
 import { useEffect, useState } from 'react';
 import Header from '../components/Header';
 import { useNavigate, useParams } from "react-router";
-import { AddDailyTaskPreset, GetDailyTaskPresetById, UpdateDailyTaskPreset } from '../endpoints/DailyTaskPreset';
+import { AddRecurringTaskPreset, GetRecurringTaskPresetById, UpdateRecurringTaskPreset } from '../endpoints/RecurringTaskPresets';
 
-function NewOrEditTask({isDailyTaskPreset, editing}) {
+function NewOrEditTask({isRecurringTaskPreset, editing}) {
     const navigate = useNavigate({});
     const {id: taskId} = useParams();
-    var colors = JSON.parse(localStorage.getItem("colors"))
 
-    const [isDailyTask, setIsDailyTask] = useState(isDailyTaskPreset);
+    const [isRecurringTask, setIsRecurringTask] = useState(isRecurringTaskPreset);
     const [title, setTitle] = useState("");
     const [description, setdescription] = useState("");
     const [errText, setErrText] = useState("");
@@ -16,7 +15,7 @@ function NewOrEditTask({isDailyTaskPreset, editing}) {
     useEffect(() => {
       const Fetch = async () => {
         if(taskId){
-          var preexistingData = await GetDailyTaskPresetById(taskId);
+          var preexistingData = await GetRecurringTaskPresetById(taskId);
           setTitle(preexistingData.title)
           setdescription(preexistingData.description)
         }
@@ -42,20 +41,19 @@ function NewOrEditTask({isDailyTaskPreset, editing}) {
         return
       }
 
-      if(isDailyTask){
+      if(isRecurringTaskPreset){
         if(editing){
           if(!taskId){
             console.error("")
             return
           }
 
-          UpdateDailyTaskPreset(taskId, title, description);
+          UpdateRecurringTaskPreset(taskId, title, description);
           navigate("/tasks");
           return
         }
         if(!editing){
-          var time = "14:00"
-          await AddDailyTaskPreset(title, description, time);
+          await AddRecurringTaskPreset(title, description);
           navigate("/tasks");
           return;
         }
@@ -67,14 +65,14 @@ function NewOrEditTask({isDailyTaskPreset, editing}) {
     <>
         <Header/>
         <div className='w-full h-auto px-[50px]'>
-          <p className='text-black dark:text-white'>Daily Task</p>
+          <p className='text-black dark:text-white'>Recurring Task</p>
           <label className={`relative inline-block w-11 h-6 ${editing ? "cursor-not-allowed" : "cursor-pointer"}`}>
             <input
               disabled={editing}
               type="checkbox"
               className="peer sr-only"
-              onChange={(e) => setIsDailyTask(e.target.checked)}
-              checked={isDailyTask}
+              onChange={(e) => setIsRecurringTask(e.target.checked)}
+              checked={isRecurringTask}
             />
             <span className="absolute inset-0 bg-gray-200 rounded-full transition-colors duration-200 ease-in-out dark:bg-[#D0D0D0] peer-checked:bg-[#0096FF] dark:peer-checked:bg-[#0065AD] peer-disabled:opacity-50 peer-disabled:pointer-events-none"></span>
             <span className="absolute top-1/2 start-0.5 -translate-y-1/2 size-5 bg-white rounded-full shadow-xs transition-transform duration-200 ease-in-out peer-checked:translate-x-full"></span>

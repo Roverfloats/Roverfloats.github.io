@@ -2,44 +2,45 @@ import { useNavigate } from "react-router";
 import { useEffect, useState } from "react";
 import { collection, query } from "firebase/firestore";
 import { db } from "../../firebase";
-import DailyTask from "./DailyTask";
 import moment from "moment";
-import { AddDailyTask, DeleteDailyTask } from "../../endpoints/DailyTask";
 import { FetchData } from "../../endpoints/General";
+import { AddTask, DeleteTask } from "../../endpoints/Tasks";
+import Tasks from "./Task";
+import Task from "./Task";
 
-function DailyTaskOverview({setReload, reload, setPopup, setPopupContent}) {
+function RecurringTaskOverview({setReload, reload, setPopup, setPopupContent}) {
     const navigate = useNavigate();
 
-    const [dailyTaskData, setDailyTaskData] = useState([]);
+    const [recurringTaskData, setRecurringTaskData] = useState([]);
 
     const AddNewTask = async (preset) => {
-        await AddDailyTask(preset.id, preset.title, preset.description);
+        await AddTask(preset.id, preset.title, preset.description);
     }
 
     const DeleteOldTask = async (docId) => {
-        await DeleteDailyTask(docId);
+        await DeleteTask(docId);
     }
 
     const refreshDailies = async () => {
         //fetch old data
-        let presetQ = collection(db, "DailyTaskPresets");
+        let presetQ = collection(db, "RecurringTaskPresets");
         presetQ = query(presetQ);
-        var newDailyTaskPresetData = await FetchData(presetQ);
+        var recurringTaskPresetData = await FetchData(presetQ);
 
-        let dailiesQ = collection(db, "DailyTasks");
+        let dailiesQ = collection(db, "Tasks");
         dailiesQ = query(dailiesQ);
-        var newDailyTaskData = await FetchData(dailiesQ);
+        var recurringTaskData = await FetchData(dailiesQ);
 
         //remove old completed tasks
-        newDailyTaskData.forEach(task => {
+        recurringTaskData.forEach(task => {
             if(moment(task.day, "DD-MM-YYYY").isBefore(moment(), "day") && task.completed){
                 DeleteOldTask(task.id)
             }
         })
 
         //add new tasks
-        newDailyTaskPresetData.forEach(preset => {
-            const exists = newDailyTaskData.some(x =>
+        recurringTaskPresetData.forEach(preset => {
+            const exists = recurringTaskData.some(x =>
                 x.presetId === preset.id &&
                 moment(x.day, "DD-MM-YYYY").isSameOrAfter(moment(), "day")
             );
@@ -50,7 +51,7 @@ function DailyTaskOverview({setReload, reload, setPopup, setPopupContent}) {
         });
 
         //fetch fresh data
-        setDailyTaskData(await FetchData(dailiesQ));
+        setRecurringTaskData(await FetchData(dailiesQ));
     }
 
     useEffect(() => {
@@ -63,16 +64,16 @@ function DailyTaskOverview({setReload, reload, setPopup, setPopupContent}) {
                 <button
                     className="h-[30px] text-[#0096FF] dark:text-[#0065AD]"
                     onClick={() => navigate("/tasks")}
-                >Manage Daily Tasks +</button>
+                >Manage Recurring Tasks +</button>
             </div>
             <div className="divide-solid divide-y-2 divide-[#D0D0D0] dark:divide-[black]">
                 <div>
-                    <p className="text-black dark:text-white">Today's daily tasks</p>
+                    <p className="text-black dark:text-white">Today's tasks</p>
                     {
-                        dailyTaskData.filter(x => moment(x.day, "DD-MM-YYYY").isSame(moment(), "day") && !x.invisible).map((dailyTask) => (
-                            <DailyTask
-                                key={dailyTask.id}
-                                taskData={dailyTask}
+                        recurringTaskData.filter(x => moment(x.day, "DD-MM-YYYY").isSame(moment(), "day") && !x.invisible).map((task) => (
+                            <Task
+                                key={task.id}
+                                taskData={task}
                                 setReload={setReload}
                                 setPopup={setPopup}
                                 setPopupContent={setPopupContent}
@@ -81,14 +82,14 @@ function DailyTaskOverview({setReload, reload, setPopup, setPopupContent}) {
                     }                    
                 </div>
                 {
-                dailyTaskData.filter(x => moment(x.day, "DD-MM-YYYY").isBefore(moment(), "day")).length != 0 ?
+                recurringTaskData.filter(x => moment(x.day, "DD-MM-YYYY").isBefore(moment(), "day")).length != 0 ?
                 <div>
                     <p className="mt-[10px]">Missed Tasks</p>
                     {
-                        dailyTaskData.filter(x => moment(x.day, "DD-MM-YYYY").isBefore(moment(), "day")).map((dailyTask) => (
-                        <DailyTask
-                            key={dailyTask.id}
-                            taskData={dailyTask}
+                        recurringTaskData.filter(x => moment(x.day, "DD-MM-YYYY").isBefore(moment(), "day")).map((task) => (
+                        <Task
+                            key={task.id}
+                            taskData={task}
                             setReload={setReload}
                             setPopup={setPopup}
                             setPopupContent={setPopupContent}
@@ -102,4 +103,4 @@ function DailyTaskOverview({setReload, reload, setPopup, setPopupContent}) {
     )
 }
 
-export default DailyTaskOverview
+export default RecurringTaskOverview

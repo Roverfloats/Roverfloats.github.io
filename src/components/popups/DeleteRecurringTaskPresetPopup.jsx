@@ -1,8 +1,8 @@
-import { DeleteDailyTaskPreset } from "../../endpoints/DailyTaskPreset";
+import { DeleteRecurringTaskPreset } from "../../endpoints/RecurringTaskPresets";
 
-function DeleteDailyTaskPresetPopup({setReload, setPopup, taskPresetData}) {
+function DeleteRecurringTaskPresetPopup({setReload, setPopup, taskPresetData}) {
     async function HandleDelete(){
-        await DeleteDailyTaskPreset(taskPresetData.id).then();
+        await DeleteRecurringTaskPreset(taskPresetData.id).then();
         setReload(prev => !prev);
         setPopup(false);
     }
@@ -25,4 +25,4 @@ function DeleteDailyTaskPresetPopup({setReload, setPopup, taskPresetData}) {
     )
 }
 
-export default DeleteDailyTaskPresetPopup
+export default DeleteRecurringTaskPresetPopup
