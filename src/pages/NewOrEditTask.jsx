@@ -20,7 +20,6 @@ function NewOrEditTask({isRecurringTaskPreset, editing}) {
           setdescription(preexistingData.description)
         }
       }
-      
       Fetch();
     }, []);
 
@@ -57,7 +56,6 @@ function NewOrEditTask({isRecurringTaskPreset, editing}) {
           navigate("/tasks");
           return;
         }
-
       }
     }
 
@@ -78,7 +76,7 @@ function NewOrEditTask({isRecurringTaskPreset, editing}) {
             <span className="absolute top-1/2 start-0.5 -translate-y-1/2 size-5 bg-white rounded-full shadow-xs transition-transform duration-200 ease-in-out peer-checked:translate-x-full"></span>
           </label>
 
-          <div className='mt-[20px]'>
+          <div className='mb-[20px]'>
             <p className='text-black dark:text-white'>Title</p>
             <input
               placeholder='Title...'
@@ -88,13 +86,22 @@ function NewOrEditTask({isRecurringTaskPreset, editing}) {
               onChange={(e) => setTitle(e.target.value)}
             />
           </div>
-          <div className='my-[20px]'>
-            <p className='text-black dark:text-white'>description</p>
+          <div className='mb-[20px]'>
+            <p className='text-black dark:text-white'>Description</p>
             <textarea
               placeholder='description...'
               value={description}
               className='w-auto min-w-[100px] h-[100px] border-2 rounded-[15px] p-[10px] border-[#D0D0D0] dark:border-black bg-[#F4F4F4] dark:bg-[#292929] text-black dark:text-white'
               onChange={(e) => setdescription(e.target.value)}
+            />
+          </div>
+          <div className='mb-[20px]'>
+            <p className='text-black dark:text-white'>Time</p>
+            <input
+              type='time'
+              // value={}
+              className='w-auto min-w-[100px] h-[30px] border-2 rounded-[15px] p-[10px] border-[#D0D0D0] dark:border-black bg-[#F4F4F4] dark:bg-[#292929] text-black dark:text-white'
+              // onChange={(e) => }
             />
           </div>
 
