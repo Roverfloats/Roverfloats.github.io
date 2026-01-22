@@ -1,5 +1,5 @@
 import { useNavigate, useParams } from 'react-router-dom';
-import Header from '../../Components/Header';
+import Header from '../../components/Header';
 import WritingOverview from '../../Components/writing/WritingOverview';
 import { useEffect, useState } from 'react';
 import { GetWorldbuildingPieceById } from '../../endpoints/Writing';

@@ -1,4 +1,4 @@
-import Header from '../../Components/Header';
+import Header from '../../components/Header';
 import WritingOverview from '../../Components/writing/WritingOverview';
 
 function Writing() {

@@ -1,6 +1,5 @@
-import Header from '../components/Header';
-import DailyTaskPresetOverview from '../components/tasks/DailyTaskPresetOverview';
-import ManagableTaskOverview from '../components/tasks/ManagableTaskOverview';
+import Header from '../../components/Header';
+import DailyTaskPresetOverview from '../../components/tasks/DailyTaskPresetOverview';
 
 function Tasks({reload, setReload, setPopup, setPopupContent}) {
 
