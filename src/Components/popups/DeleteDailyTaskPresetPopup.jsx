@@ -12,7 +12,7 @@ function DeleteDailyTaskPresetPopup({setReload, setPopup, taskPresetData}) {
             <p className="text-[25px] text-center text-black dark:text-white">Are you sure you wanna delete this preset?</p>
             <div className="flex w-full flex-col md:flex-row md:justify-between items-center mt-[20px]">
                 <button
-                    className="w-[150px] h-[40px] rounded-[15px] text-white bg-[#0096FF] darl:bg-[#0065AD]"
+                    className="w-[150px] h-[40px] rounded-[15px] text-white bg-[#0096FF] dark:bg-[#0065AD]"
                     onClick={() => setPopup(false)}
                 >No</button>
                 <button 

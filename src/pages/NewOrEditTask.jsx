@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import Header from '../Components/Header';
+import Header from '../components/Header';
 import { useNavigate, useParams } from "react-router";
 import { AddDailyTaskPreset, GetDailyTaskPresetById, UpdateDailyTaskPreset } from '../endpoints/DailyTaskPreset';
 
@@ -76,7 +76,7 @@ function NewOrEditTask({isDailyTaskPreset, editing}) {
               onChange={(e) => setIsDailyTask(e.target.checked)}
               checked={isDailyTask}
             />
-            <span className="absolute inset-0 bg-gray-200 rounded-full transition-colors duration-200 ease-in-out peer-checked:bg-blue-600 dark:bg-[#D0D0D0] dark:peer-checked:bg-[#0096FF] peer-disabled:opacity-50 peer-disabled:pointer-events-none"></span>
+            <span className="absolute inset-0 bg-gray-200 rounded-full transition-colors duration-200 ease-in-out dark:bg-[#D0D0D0] peer-checked:bg-[#0096FF] dark:peer-checked:bg-[#0065AD] peer-disabled:opacity-50 peer-disabled:pointer-events-none"></span>
             <span className="absolute top-1/2 start-0.5 -translate-y-1/2 size-5 bg-white rounded-full shadow-xs transition-transform duration-200 ease-in-out peer-checked:translate-x-full"></span>
           </label>
 

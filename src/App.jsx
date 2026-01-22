@@ -3,22 +3,37 @@ import { Routes, Route } from 'react-router-dom';
 import Login from './pages/Login';
 import Front from './pages/Front';
 import Settings from './pages/Settings';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Popup from "./components/Popup";
 import ManageTasks from "./pages/ManageTasks";
 import NewOrEditTask from "./pages/NewOrEditTask";
 import AuthWrapper from "./AuthWrapper";
+import { FetchData } from "./endpoints/General";
+import { collection, query } from "firebase/firestore";
+import { db } from "./firebase";
 
 function App() {
   const [popup, setPopup] = useState(false)
   const [popupContent, setPopupContent] = useState(null)
   const [reload, setReload] = useState(null)
+  const [settings, setSettings] = useState([])
   const [darkMode, setDarkMode] = useState(false)
 
+  async function Fetch(){
+    let q = collection(db, "Settings");
+    q = query(q);
+    var settingsData = await FetchData(q);
+    setSettings(settingsData)
+
+    setDarkMode(settingsData?.find(x => x.type === "DarkMode")?.value)
+  }
+
+  useEffect(() => {
+    Fetch()
+  }, [reload]);
 
 
 
-  
   return (
     <div className={`h-full w-full bg-white dark:bg-[#171717] ${darkMode ? "dark" : ""}`}>
       <AuthWrapper>
@@ -66,7 +81,7 @@ function App() {
 
           <Route
             path="/settings"
-            element={<Settings setDarkMode={setDarkMode} darkMode={darkMode}/>}
+            element={<Settings setReload={setReload} settingsData={settings} />}
           />
         </Routes>
         {
