@@ -28,18 +28,19 @@ export async function AddRecurringTaskPreset(title, description, time) {
       }
     );
 
-    await AddTask(recurringTaskPresetRef.id, title, description);
+    await AddTask(recurringTaskPresetRef.id, title, description, time);
   } catch (error) {
     console.error("Failed to add recurring task preset:", error);
   }
 }
 
-export async function UpdateRecurringTaskPreset(presetId, title, description) {
+export async function UpdateRecurringTaskPreset(presetId, title, description, time) {
   try {
     const recurringTaskPresetRef = doc(db, "RecurringTaskPresets", presetId);
     await setDoc(recurringTaskPresetRef, {
       title,
       description,
+      time,
       lastUpdated: serverTimestamp()
     })
 
@@ -58,7 +59,7 @@ export async function UpdateRecurringTaskPreset(presetId, title, description) {
     }
 
     TasksData.forEach(Task => {
-      UpdateTask(presetId, Task.id, title, description)
+      UpdateTask(presetId, Task.id, title, description, time)
     });
 
   } catch (error) {

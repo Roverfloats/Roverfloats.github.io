@@ -9,6 +9,7 @@ function RecurringTaskPreset({taskPresetData, setReload, setPopup, setPopupConte
             <div>
                 <div className="text-[25px] text-black dark:text-white">{taskPresetData.title}</div>
                 <div className="text-wrap text-black dark:text-white">{taskPresetData.description}</div>
+                <div className="text-wrap text-black dark:text-white">{taskPresetData.time}</div>
             </div>
             <div className="flex flex-col md:flex-row md:w-[400px] md:justify-end">
                 <button

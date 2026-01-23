@@ -2,12 +2,13 @@ import { deleteDoc, doc, addDoc, collection, updateDoc } from "firebase/firestor
 import { db } from "../firebase"
 import moment from "moment";
 
-export async function AddTask(presetId, title, description) {
+export async function AddTask(presetId, title, description, time) {
   try {
     await addDoc(collection(db, "Tasks"), {
       presetId,
       title,
       description,
+      ...(time !== undefined && { time }),
       completed: false,
       invisible: false,
       day: moment().format("DD-MM-YYYY")
@@ -17,13 +18,14 @@ export async function AddTask(presetId, title, description) {
   }
 }
 
-export async function UpdateTask(presetId, taskId, title, description) {
+export async function UpdateTask(presetId, taskId, title, description, time) {
   try {
     const TaskRef = doc(db, "Tasks", taskId);
     await updateDoc(TaskRef, {
       presetId,
       title,
       description,
+      time
     })
   } catch (error) {
     console.error("Couldnt Remove task: ", error);

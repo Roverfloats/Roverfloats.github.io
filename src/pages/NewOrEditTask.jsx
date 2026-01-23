@@ -10,6 +10,8 @@ function NewOrEditTask({isRecurringTaskPreset, editing}) {
     const [isRecurringTask, setIsRecurringTask] = useState(isRecurringTaskPreset);
     const [title, setTitle] = useState("");
     const [description, setdescription] = useState("");
+    const [time, setTime] = useState("12:00");
+    const [timeSelected, setTimeSelected] = useState("");
     const [errText, setErrText] = useState("");
 
     useEffect(() => {
@@ -47,12 +49,19 @@ function NewOrEditTask({isRecurringTaskPreset, editing}) {
             return
           }
 
-          UpdateRecurringTaskPreset(taskId, title, description);
+          var tempTime
+          if(!timeSelected){
+            tempTime = ""
+          } else {
+            tempTime = time
+          }
+
+          UpdateRecurringTaskPreset(taskId, title, description, tempTime);
           navigate("/tasks");
           return
         }
         if(!editing){
-          await AddRecurringTaskPreset(title, description);
+          await AddRecurringTaskPreset(title, description, tempTime);
           navigate("/tasks");
           return;
         }
@@ -97,12 +106,26 @@ function NewOrEditTask({isRecurringTaskPreset, editing}) {
           </div>
           <div className='mb-[20px]'>
             <p className='text-black dark:text-white'>Time</p>
+            <div className='flex items-center'>
+              <label className={`mr-[20px] relative inline-block w-11 h-6 ${editing ? "cursor-not-allowed" : "cursor-pointer"}`}>
+              <input
+                disabled={editing}
+                className="peer sr-only"
+                type='checkbox'
+                value={timeSelected}
+                onChange={(e) => setTimeSelected(e.target.checked)}
+              />
+              <span className="absolute inset-0 bg-gray-200 rounded-full transition-colors duration-200 ease-in-out dark:bg-[#D0D0D0] peer-checked:bg-[#0096FF] dark:peer-checked:bg-[#0065AD] peer-disabled:opacity-50 peer-disabled:pointer-events-none"></span>
+              <span className="absolute top-1/2 start-0.5 -translate-y-1/2 size-5 bg-white rounded-full shadow-xs transition-transform duration-200 ease-in-out peer-checked:translate-x-full"></span>
+            </label>
             <input
+              disabled={!timeSelected}
               type='time'
-              // value={}
-              className='w-auto min-w-[100px] h-[30px] border-2 rounded-[15px] p-[10px] border-[#D0D0D0] dark:border-black bg-[#F4F4F4] dark:bg-[#292929] text-black dark:text-white'
-              // onChange={(e) => }
+              value={time}
+              className='disabled:text-[#D0D0D0] w-auto min-w-[100px] h-[30px] border-2 rounded-[15px] p-[10px] border-[#D0D0D0] dark:border-black bg-[#F4F4F4] dark:bg-[#292929] text-black dark:text-white'
+              onChange={(e) => setTime(e.target.value)}
             />
+            </div>
           </div>
 
           <p className='text-[#DF121B]'>{errText}</p>

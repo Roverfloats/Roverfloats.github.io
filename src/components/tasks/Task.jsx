@@ -12,6 +12,7 @@ function Task({taskData, setReload, setPopupContent, setPopup}) {
             <div className={`h-full w-[60%] ${taskData.completed ? "text-white dark:text-black" : "text-black dark:text-white"}`}>
                 <div className="text-[25px]">{taskData.title}</div>
                 <div className="text-wrap">{taskData.description}</div>
+                <div className="text-wrap">{taskData.time}</div>
             </div>
             <div className="flex justify-end h-full w-[40%] ">
                 {
