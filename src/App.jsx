@@ -77,6 +77,22 @@ function App() {
           />
 
           <Route
+            path="/new-task"
+            element={<NewOrEditTask
+              isRecurringTaskPreset={false}
+              editing={false}
+            />}
+          />
+
+          <Route
+            path="/edit-task"
+            element={<NewOrEditTask
+              isRecurringTaskPreset={false}
+              editing={true}
+            />}
+          />
+
+          <Route
             path="/settings"
             element={<Settings setReload={setReload} settingsData={settings} />}
           />

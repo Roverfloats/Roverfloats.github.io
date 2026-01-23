@@ -8,7 +8,7 @@ import { AddTask, DeleteTask } from "../../endpoints/Tasks";
 import Tasks from "./Task";
 import Task from "./Task";
 
-function RecurringTaskOverview({setReload, reload, setPopup, setPopupContent}) {
+function TaskOverview({setReload, reload, setPopup, setPopupContent}) {
     const navigate = useNavigate();
 
     const [recurringTaskData, setRecurringTaskData] = useState([]);
@@ -64,7 +64,7 @@ function RecurringTaskOverview({setReload, reload, setPopup, setPopupContent}) {
                 <button
                     className="h-[30px] text-[#0096FF] dark:text-[#0065AD]"
                     onClick={() => navigate("/tasks")}
-                >Manage Recurring Tasks +</button>
+                >Manage Tasks +</button>
             </div>
             <div className="divide-solid divide-y-2 divide-[#D0D0D0] dark:divide-[black]">
                 <div>
@@ -103,4 +103,4 @@ function RecurringTaskOverview({setReload, reload, setPopup, setPopupContent}) {
     )
 }
 
-export default RecurringTaskOverview
+export default TaskOverview

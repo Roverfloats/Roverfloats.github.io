@@ -5,7 +5,7 @@ import moment from "moment";
 export async function AddTask(presetId, title, description, time) {
   try {
     await addDoc(collection(db, "Tasks"), {
-      presetId,
+      ...(presetId !== undefined && { presetId }),
       title,
       description,
       ...(time !== undefined && { time }),
@@ -22,10 +22,10 @@ export async function UpdateTask(presetId, taskId, title, description, time) {
   try {
     const TaskRef = doc(db, "Tasks", taskId);
     await updateDoc(TaskRef, {
-      presetId,
+      ...(presetId !== undefined && { presetId }),
       title,
       description,
-      time
+      ...(time !== undefined && { time }),
     })
   } catch (error) {
     console.error("Couldnt Remove task: ", error);

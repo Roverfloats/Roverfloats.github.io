@@ -3,7 +3,7 @@ import { DeleteTask, SetTaskInvisible } from "../../endpoints/Tasks";
 
 function RemoveTaskFromList({setReload, setPopup, taskData}) {
     async function HandleSetInvisible(){
-        if(moment(taskData.day, "DD-MM-YYYY").isBefore(moment(), "day")){
+        if(moment(taskData.day, "DD-MM-YYYY").isBefore(moment(), "day") || !taskData.presetId){
             await DeleteTask(taskData.id).then();
         }
         else{

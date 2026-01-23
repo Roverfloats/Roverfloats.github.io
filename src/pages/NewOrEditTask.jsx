@@ -2,71 +2,96 @@ import { useEffect, useState } from 'react';
 import Header from '../components/Header';
 import { useNavigate, useParams } from "react-router";
 import { AddRecurringTaskPreset, GetRecurringTaskPresetById, UpdateRecurringTaskPreset } from '../endpoints/RecurringTaskPresets';
+import { AddTask, UpdateTask } from '../endpoints/Tasks';
 
 function NewOrEditTask({isRecurringTaskPreset, editing}) {
-    const navigate = useNavigate({});
-    const {id: taskId} = useParams();
+  const navigate = useNavigate({});
+  const {id: taskId} = useParams();
 
-    const [isRecurringTask, setIsRecurringTask] = useState(isRecurringTaskPreset);
-    const [title, setTitle] = useState("");
-    const [description, setdescription] = useState("");
-    const [time, setTime] = useState("12:00");
-    const [timeSelected, setTimeSelected] = useState("");
-    const [errText, setErrText] = useState("");
+  const [isRecurringTask, setIsRecurringTask] = useState(isRecurringTaskPreset);
+  const [title, setTitle] = useState("");
+  const [description, setdescription] = useState("");
+  const [time, setTime] = useState("12:00");
+  const [timeSelected, setTimeSelected] = useState("");
+  const [errText, setErrText] = useState("");
 
-    useEffect(() => {
-      const Fetch = async () => {
-        if(taskId){
-          var preexistingData = await GetRecurringTaskPresetById(taskId);
-          setTitle(preexistingData.title)
-          setdescription(preexistingData.description)
-        }
-      }
-      Fetch();
-    }, []);
-
-    useEffect(() => {
-        const ResetErrText = async () => {
-          setErrText("")
-        }
-        ResetErrText();
-    }, [title, description]);
-
-    async function HandleSubmit() {
-      if(title == ""){
-        setErrText("Title cannot be empty.");
-        return
-      }
-      if(description == ""){
-        setErrText("description cannot be empty.");
-        return
-      }
-
-      if(isRecurringTaskPreset){
-        if(editing){
-          if(!taskId){
-            console.error("")
-            return
-          }
-
-          var tempTime
-          if(!timeSelected){
-            tempTime = ""
-          } else {
-            tempTime = time
-          }
-
-          UpdateRecurringTaskPreset(taskId, title, description, tempTime);
-          navigate("/tasks");
-          return
-        }
-        if(!editing){
-          await AddRecurringTaskPreset(title, description, tempTime);
-          navigate("/tasks");
-          return;
-        }
+  useEffect(() => {
+    const Fetch = async () => {
+      if(taskId){
+        var preexistingData = await GetRecurringTaskPresetById(taskId);
+        setTitle(preexistingData.title)
+        setdescription(preexistingData.description)
       }
     }
+    Fetch();
+  }, []);
+
+  useEffect(() => {
+      const ResetErrText = async () => {
+        setErrText("")
+      }
+      ResetErrText();
+  }, [title, description]);
+
+  async function HandleSubmit() {
+    if(title == ""){
+      setErrText("Title cannot be empty.");
+      return
+    }
+    if(description == ""){
+      setErrText("description cannot be empty.");
+      return
+    }
+
+    if(isRecurringTaskPreset){
+      if(editing){
+        if(!taskId){
+          console.error("")
+          return
+        }
+
+        var tempTime
+        if(!timeSelected){
+          tempTime = ""
+        } else {
+          tempTime = time
+        }
+
+        UpdateRecurringTaskPreset(taskId, title, description, tempTime);
+        navigate("/tasks");
+        return
+      }
+      if(!editing){
+        await AddRecurringTaskPreset(title, description, tempTime);
+        navigate("/tasks");
+        return;
+      }
+    }
+    else{
+      if(editing){
+        if(!taskId){
+          console.error("")
+          return
+        }
+
+        var tempTime
+        if(!timeSelected){
+          tempTime = ""
+        } else {
+          tempTime = time
+        }
+
+        UpdateTask(taskId, title, description, tempTime);
+        navigate("/tasks");
+        return
+      }
+      if(!editing){
+        await AddTask("", title, description, tempTime);
+        navigate("/tasks");
+        return;
+      }
+    }
+  }
 
   return (
     <>
