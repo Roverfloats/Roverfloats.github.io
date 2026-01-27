@@ -1,11 +1,11 @@
 import Header from '../components/Header';
 import TaskOverview from '../components/tasks/TaskOverview';
 
-function Front({reload, setReload, setPopup, setPopupContent}) {
+function Front({reload, setReload, setPopup, setPopupContent, allowSensitive}) {
 
   return (
     <>
-        <Header/>
+        <Header allowSensitive={allowSensitive}/>
         <div className="w-full h-auto grid grid-cols-1 md:grid-cols-2">
           <div className=''>
             <TaskOverview

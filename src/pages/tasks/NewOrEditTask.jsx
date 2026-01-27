@@ -4,7 +4,7 @@ import { useNavigate, useParams } from "react-router";
 import { AddRecurringTaskPreset, GetRecurringTaskPresetById, UpdateRecurringTaskPreset } from '../../endpoints/RecurringTaskPresets';
 import { AddTask, GetTaskById, UpdateTask } from '../../endpoints/Tasks';
 
-function NewOrEditTask({isRecurringTaskPreset, editing}) {
+function NewOrEditTask({isRecurringTaskPreset, editing, allowSensitive}) {
   const navigate = useNavigate({});
   const {id: taskId} = useParams();
 
@@ -75,7 +75,7 @@ function NewOrEditTask({isRecurringTaskPreset, editing}) {
 
   return (
     <>
-        <Header/>
+        <Header allowSensitive={allowSensitive}/>
         <div className='w-full h-auto px-[50px]'>
           <p className='text-black dark:text-white'>Recurring Task</p>
           <label className={`relative inline-block w-11 h-6 ${editing ? "cursor-not-allowed" : "cursor-pointer"}`}>

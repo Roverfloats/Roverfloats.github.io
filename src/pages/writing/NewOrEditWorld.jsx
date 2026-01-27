@@ -4,7 +4,7 @@ import { useNavigate, useParams } from "react-router";
 import { AddWorld, GetWorldById, UpdateWorld } from '../../endpoints/Worlds';
 
 
-function NewOrEditWorld({editing}) {
+function NewOrEditWorld({editing, allowSensitive}) {
     const navigate = useNavigate({});
     const {id: worldId} = useParams();
 
@@ -62,7 +62,7 @@ function NewOrEditWorld({editing}) {
 
     return (
         <>
-            <Header/>
+            <Header allowSensitive={allowSensitive}/>
             <div className='w-full h-auto px-[50px]'>
                 <div className='mb-[20px] w-full'>
                     <p className='text-black dark:text-white'>Title</p>

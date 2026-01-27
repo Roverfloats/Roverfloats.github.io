@@ -11,3 +11,14 @@ export async function UpdateDarkmode(value) {
     console.error("Couldnt update setting: ", error);
   }
 }
+
+export async function UpdateAllowSensitive(value) {
+  try {
+    const allowSensitiveRef = doc(db, "Settings", "HRMxxayVX8fKTM9BFt6I");
+    await updateDoc(allowSensitiveRef, {
+      value
+    })
+  } catch (error) {
+    console.error("Couldnt update setting: ", error);
+  }
+}

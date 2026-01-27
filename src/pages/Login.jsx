@@ -31,6 +31,7 @@ function Login() {
     }
     Fetch();
     localStorage.setItem("loggedIn", false);
+    localStorage.setItem("allowSensitive", false);
 
     //set background image
     const startDay = moment('10:00', 'HH:mm');

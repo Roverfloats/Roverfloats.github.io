@@ -21,6 +21,7 @@ function App() {
   const [reload, setReload] = useState(null)
   const [settings, setSettings] = useState([])
   const [darkMode, setDarkMode] = useState(false)
+  const [allowSensitive, setAllowSensitive] = useState(false);
 
   async function Fetch(){
     let q = collection(db, "Settings");
@@ -28,6 +29,7 @@ function App() {
     var settingsData = await FetchData(q);
     setSettings(settingsData)
     setDarkMode(settingsData?.find(x => x.type === "DarkMode")?.value)
+    setAllowSensitive(settingsData?.find(x => x.type === "AllowSensitive")?.value)
   }
 
   useEffect(() => {
@@ -50,6 +52,7 @@ function App() {
               setReload={setReload}
               setPopup={setPopup}
               setPopupContent={setPopupContent}
+              allowSensitive={allowSensitive}
             />}
           />
 
@@ -60,6 +63,7 @@ function App() {
               setReload={setReload}
               setPopup={setPopup}
               setPopupContent={setPopupContent}
+              allowSensitive={allowSensitive}
             />} 
           />
 
@@ -68,6 +72,7 @@ function App() {
             element={<NewOrEditTask
               isRecurringTaskPreset={true}
               editing={true}
+              allowSensitive={allowSensitive}
             />}
           />
 
@@ -76,6 +81,7 @@ function App() {
             element={<NewOrEditTask
               isRecurringTaskPreset={true}
               editing={false}
+              allowSensitive={allowSensitive}
             />}
           />
 
@@ -84,6 +90,7 @@ function App() {
             element={<NewOrEditTask
               isRecurringTaskPreset={false}
               editing={false}
+              allowSensitive={allowSensitive}
             />}
           />
 
@@ -92,24 +99,31 @@ function App() {
             element={<NewOrEditTask
               isRecurringTaskPreset={false}
               editing={true}
+              allowSensitive={allowSensitive}
             />}
           />
 
           <Route
             path="/worldbuilding-collection"
-            element={<WorldbuildingCollection reload={reload}
+            element={<WorldbuildingCollection
+              reload={reload}
+              allowSensitive={allowSensitive}
             />}
           />
 
           <Route
             path="/new-world"
-            element={<NewOrEditWorld editing={false}
+            element={<NewOrEditWorld
+              editing={false}
+              allowSensitive={allowSensitive}
             />}
           />
 
           <Route
             path="/edit-world/:id"
-            element={<NewOrEditWorld editing={true}
+            element={<NewOrEditWorld
+              editing={true}
+              allowSensitive={allowSensitive}
             />}
           />
 
@@ -120,12 +134,17 @@ function App() {
               setReload={setReload}
               setPopup={setPopup}
               setPopupContent={setPopupContent}
+              allowSensitive={allowSensitive}
             />}
           />
 
           <Route
             path="/settings"
-            element={<Settings setReload={setReload} settingsData={settings} />}
+            element={<Settings
+              setReload={setReload}
+              settingsData={settings}
+              allowSensitive={allowSensitive}
+            />}
           />
         </Routes>
         {
