@@ -5,7 +5,6 @@ import { db } from "../../firebase";
 import moment from "moment";
 import { FetchData } from "../../endpoints/General";
 import { AddTask, DeleteTask } from "../../endpoints/Tasks";
-import Tasks from "./Task";
 import Task from "./Task";
 
 function TaskOverview({setReload, reload, setPopup, setPopupContent}) {
@@ -14,7 +13,7 @@ function TaskOverview({setReload, reload, setPopup, setPopupContent}) {
     const [recurringTaskData, setRecurringTaskData] = useState([]);
 
     const AddNewTask = async (preset) => {
-        await AddTask(preset.id, preset.title, preset.description);
+        await AddTask(preset.id, preset.title, preset.description, preset.time);
     }
 
     const DeleteOldTask = async (docId) => {
@@ -84,7 +83,7 @@ function TaskOverview({setReload, reload, setPopup, setPopupContent}) {
                 {
                 recurringTaskData.filter(x => moment(x.day, "DD-MM-YYYY").isBefore(moment(), "day")).length != 0 ?
                 <div>
-                    <p className="mt-[10px]">Missed Tasks</p>
+                    <p className="mt-[10px] text-black dark:text-white">Missed Tasks</p>
                     {
                         recurringTaskData.filter(x => moment(x.day, "DD-MM-YYYY").isBefore(moment(), "day")).map((task) => (
                         <Task
