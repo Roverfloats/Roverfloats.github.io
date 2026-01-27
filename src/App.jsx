@@ -85,7 +85,7 @@ function App() {
           />
 
           <Route
-            path="/edit-task"
+            path="/edit-task/:id"
             element={<NewOrEditTask
               isRecurringTaskPreset={false}
               editing={true}

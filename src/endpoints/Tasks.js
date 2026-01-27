@@ -1,6 +1,20 @@
-import { deleteDoc, doc, addDoc, collection, updateDoc } from "firebase/firestore";
+import { deleteDoc, doc, addDoc, collection, updateDoc, getDoc } from "firebase/firestore";
 import { db } from "../firebase"
 import moment from "moment";
+
+export async function GetTaskById (taskId) {
+  try {
+      const taskRef = doc(db, "Tasks", taskId);
+      const taskSnap = await getDoc(taskRef)
+
+      if(!taskSnap.exists()){
+        return
+      }
+      return(taskSnap.data())
+  } catch (err) {
+      console.error("Failed to fetch: ", err);
+  }
+};
 
 export async function AddTask(presetId, title, description, time) {
   try {
@@ -28,7 +42,7 @@ export async function UpdateTask(presetId, taskId, title, description, time) {
       ...(time !== undefined && { time }),
     })
   } catch (error) {
-    console.error("Couldnt Remove task: ", error);
+    console.error("failed to update task: ", error);
   }
 }
 
@@ -39,7 +53,7 @@ export async function CompleteTask(taskId) {
       completed: true,
     })
   } catch (error) {
-    console.error("Couldnt Remove task: ", error);
+    console.error("falied to edit task: ", error);
   }
 }
 
@@ -50,7 +64,7 @@ export async function SetTaskInvisible(taskId) {
       invisible: true
     })
   } catch (error) {
-    console.error("Couldnt Remove task: ", error);
+    console.error("failed to edit task: ", error);
   }
 }
 
@@ -60,6 +74,6 @@ export async function DeleteTask(docId) {
   try {
     await deleteDoc(doc(db, "Tasks", docId));
   } catch (error) {
-    console.error("Couldnt Remove task: ", error);
+    console.error("failed to Remove task: ", error);
   }
 }

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import Header from '../components/Header';
 import { useNavigate, useParams } from "react-router";
 import { AddRecurringTaskPreset, GetRecurringTaskPresetById, UpdateRecurringTaskPreset } from '../endpoints/RecurringTaskPresets';
-import { AddTask, UpdateTask } from '../endpoints/Tasks';
+import { AddTask, GetTaskById, UpdateTask } from '../endpoints/Tasks';
 
 function NewOrEditTask({isRecurringTaskPreset, editing}) {
   const navigate = useNavigate({});
@@ -12,85 +12,65 @@ function NewOrEditTask({isRecurringTaskPreset, editing}) {
   const [title, setTitle] = useState("");
   const [description, setdescription] = useState("");
   const [time, setTime] = useState("12:00");
-  const [timeSelected, setTimeSelected] = useState("");
+  const [timeSelected, setTimeSelected] = useState(false);
   const [errText, setErrText] = useState("");
 
   useEffect(() => {
-    const Fetch = async () => {
-      if(taskId){
-        var preexistingData = await GetRecurringTaskPresetById(taskId);
-        setTitle(preexistingData.title)
-        setdescription(preexistingData.description)
-      }
-    }
-    Fetch();
-  }, []);
+    if (!taskId) return;
+
+    const fetchData = async () => {
+      const preexistingData = isRecurringTaskPreset
+        ? await GetRecurringTaskPresetById(taskId)
+        : await GetTaskById(taskId);
+
+      setTitle(preexistingData.title);
+      setdescription(preexistingData.description);
+      setTime(preexistingData.time || "12:00");
+      setTimeSelected(!!preexistingData.time);
+    };
+
+    fetchData();
+  }, [taskId, isRecurringTaskPreset]);
 
   useEffect(() => {
-      const ResetErrText = async () => {
-        setErrText("")
-      }
-      ResetErrText();
+    const UpdateText = async () => {
+      setErrText("")
+    }
+    UpdateText()
   }, [title, description]);
 
   async function HandleSubmit() {
-    if(title == ""){
+    if (title === "") {
       setErrText("Title cannot be empty.");
-      return
+      return;
     }
-    if(description == ""){
+    if (description === "") {
       setErrText("description cannot be empty.");
-      return
+      return;
     }
 
-    if(isRecurringTaskPreset){
-      if(editing){
-        if(!taskId){
-          console.error("")
-          return
-        }
+    const tempTime = timeSelected ? time : "";
 
-        var tempTime
-        if(!timeSelected){
-          tempTime = ""
-        } else {
-          tempTime = time
-        }
+    if (editing && !taskId) {
+      console.error("Missing taskId");
+      return;
+    }
 
+    if (isRecurringTask) {
+      if (editing) {
         UpdateRecurringTaskPreset(taskId, title, description, tempTime);
-        navigate("/tasks");
-        return
-      }
-      if(!editing){
+      } else {
         await AddRecurringTaskPreset(title, description, tempTime);
-        navigate("/tasks");
-        return;
       }
-    }
-    else{
-      if(editing){
-        if(!taskId){
-          console.error("")
-          return
-        }
-
-        var tempTime
-        if(!timeSelected){
-          tempTime = ""
-        } else {
-          tempTime = time
-        }
-
-        UpdateTask(taskId, title, description, tempTime);
-        navigate("/tasks");
-        return
-      }
-      if(!editing){
+    } else {
+      if (editing) {
+        UpdateTask("", taskId, title, description, tempTime);
+      } else {
         await AddTask("", title, description, tempTime);
-        navigate("/tasks");
-        return;
       }
     }
+
+    navigate("/tasks");
   }
 
   return (
@@ -132,12 +112,11 @@ function NewOrEditTask({isRecurringTaskPreset, editing}) {
           <div className='mb-[20px]'>
             <p className='text-black dark:text-white'>Time</p>
             <div className='flex items-center'>
-              <label className={`mr-[20px] relative inline-block w-11 h-6 ${editing ? "cursor-not-allowed" : "cursor-pointer"}`}>
+              <label className={`mr-[20px] relative inline-block w-11 h-6 cursor-pointer`}>
               <input
-                disabled={editing}
                 className="peer sr-only"
                 type='checkbox'
-                value={timeSelected}
+                checked={timeSelected}
                 onChange={(e) => setTimeSelected(e.target.checked)}
               />
               <span className="absolute inset-0 bg-gray-200 rounded-full transition-colors duration-200 ease-in-out dark:bg-[#D0D0D0] peer-checked:bg-[#0096FF] dark:peer-checked:bg-[#0065AD] peer-disabled:opacity-50 peer-disabled:pointer-events-none"></span>
