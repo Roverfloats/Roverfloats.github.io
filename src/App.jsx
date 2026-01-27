@@ -5,12 +5,15 @@ import Front from './pages/Front';
 import Settings from './pages/Settings';
 import { useEffect, useState } from "react";
 import Popup from "./components/Popup";
-import ManageTasks from "./pages/ManageTasks";
-import NewOrEditTask from "./pages/NewOrEditTask";
+import ManageTasks from "./pages/tasks/ManageTasks";
+import NewOrEditTask from "./pages/tasks/NewOrEditTask";
 import AuthWrapper from "./AuthWrapper";
 import { FetchData } from "./endpoints/General";
 import { collection, query } from "firebase/firestore";
 import { db } from "./firebase";
+import WorldbuildingCollection from "./pages/writing/Writing";
+import NewOrEditWorld from "./pages/writing/NewOrEditWorld";
+import WorldInfo from "./pages/writing/WorldInfo";
 
 function App() {
   const [popup, setPopup] = useState(false)
@@ -89,6 +92,34 @@ function App() {
             element={<NewOrEditTask
               isRecurringTaskPreset={false}
               editing={true}
+            />}
+          />
+
+          <Route
+            path="/worldbuilding-collection"
+            element={<WorldbuildingCollection reload={reload}
+            />}
+          />
+
+          <Route
+            path="/new-world"
+            element={<NewOrEditWorld editing={false}
+            />}
+          />
+
+          <Route
+            path="/edit-world/:id"
+            element={<NewOrEditWorld editing={true}
+            />}
+          />
+
+          <Route
+            path="/world/:id"
+            element={<WorldInfo
+              reload={reload}
+              setReload={setReload}
+              setPopup={setPopup}
+              setPopupContent={setPopupContent}
             />}
           />
 

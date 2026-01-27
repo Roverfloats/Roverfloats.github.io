@@ -11,10 +11,13 @@ function Settings({ settingsData, setReload }) {
   }
 
   useEffect(() => {
-    const darkMode = settingsData?.find(x => x.type === "DarkMode")?.value;
-    if (typeof darkMode === "boolean") {
-      setDarkModeSetting(darkMode);
+    const update = async () => {
+      const darkMode = settingsData?.find(x => x.type === "DarkMode")?.value;
+      if (typeof darkMode === "boolean") {
+        setDarkModeSetting(darkMode);
+      }
     }
+    update()
   }, [settingsData]);
 
   return (

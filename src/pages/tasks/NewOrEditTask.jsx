@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import Header from '../components/Header';
+import Header from '../../components/Header';
 import { useNavigate, useParams } from "react-router";
-import { AddRecurringTaskPreset, GetRecurringTaskPresetById, UpdateRecurringTaskPreset } from '../endpoints/RecurringTaskPresets';
-import { AddTask, GetTaskById, UpdateTask } from '../endpoints/Tasks';
+import { AddRecurringTaskPreset, GetRecurringTaskPresetById, UpdateRecurringTaskPreset } from '../../endpoints/RecurringTaskPresets';
+import { AddTask, GetTaskById, UpdateTask } from '../../endpoints/Tasks';
 
 function NewOrEditTask({isRecurringTaskPreset, editing}) {
   const navigate = useNavigate({});
