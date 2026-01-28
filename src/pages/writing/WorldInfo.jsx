@@ -4,7 +4,7 @@ import { GetWorldById } from '../../endpoints/Worlds';
 import { useNavigate, useParams } from 'react-router-dom';
 import DeleteWorldPopup from '../../components/popups/DeleteWorldPopup';
 
-function WorldInfo({reload, setReload, setPopup, setPopupContent, allowSensitive}) {
+function WorldInfo({reload, setReload, setPopup, setPopupContent}) {
   const navigate = useNavigate({});
   const {id: worldId} = useParams();
 
@@ -24,7 +24,7 @@ function WorldInfo({reload, setReload, setPopup, setPopupContent, allowSensitive
 
   return (
     <>
-        <Header allowSensitive={allowSensitive}/>
+        <Header/>
         <div className="w-full h-auto px-[50px]">
           <div className='flex flex-col items-center w-full mb-[20px]'>
             <p className='text-[25px] text-black dark:text-white'>{worldData.title}</p>

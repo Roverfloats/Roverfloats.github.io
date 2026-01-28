@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import Header from '../components/Header';
 import { UpdateAllowSensitive, UpdateDarkmode } from '../endpoints/Settings';
 
-function Settings({ settingsData, setReload, allowSensitive }) {
+function Settings({ settingsData, setReload }) {
   const [darkModeSetting, setDarkModeSetting] = useState(false);
   const [allowSensitiveSetting, setAllowSensitiveSetting] = useState(false);
 
@@ -28,7 +28,7 @@ function Settings({ settingsData, setReload, allowSensitive }) {
 
   return (
     <>
-      <Header allowSensitive={allowSensitive}/>
+      <Header/>
       <div className="px-[50px] flex flex-col">
         <div className="mb-[20px]">
           <p className="text-black dark:text-white">Darkmode</p>

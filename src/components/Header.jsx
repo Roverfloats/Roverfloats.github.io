@@ -2,7 +2,7 @@ import { useNavigate } from "react-router";
 
 import Settings from "../media/icons/SettingsWhite.png"
 
-function Header({allowSensitive}) {
+function Header() {
     let navigate = useNavigate();
 
     return (
@@ -28,15 +28,10 @@ function Header({allowSensitive}) {
                     onClick={() => navigate("/tasks")}
                     className="px-[20px] mx-[10px] w-auto h-[40px] rounded-[15px] bg-[#0096FF] dark:bg-[#0065AD] text-white"
                 >Tasks</button>
-                {
-                    allowSensitive ? 
-                    <button
-                        onClick={() => navigate("/worldbuilding-collection")}
-                        className="px-[20px] mx-[10px] w-auto h-[40px] rounded-[15px] bg-[#0096FF] dark:bg-[#0065AD] text-white"
-                    >Writing</button>
-                    : <></>
-                }
-
+                <button
+                    onClick={() => navigate("/worldbuilding-collection")}
+                    className="px-[20px] mx-[10px] w-auto h-[40px] rounded-[15px] bg-[#0096FF] dark:bg-[#0065AD] text-white"
+                >Writing</button>
 
                 <div className="mr-[40px]"/>
             </nav>

@@ -52,7 +52,6 @@ function App() {
               setReload={setReload}
               setPopup={setPopup}
               setPopupContent={setPopupContent}
-              allowSensitive={allowSensitive}
             />}
           />
 
@@ -63,7 +62,6 @@ function App() {
               setReload={setReload}
               setPopup={setPopup}
               setPopupContent={setPopupContent}
-              allowSensitive={allowSensitive}
             />} 
           />
 
@@ -72,7 +70,6 @@ function App() {
             element={<NewOrEditTask
               isRecurringTaskPreset={true}
               editing={true}
-              allowSensitive={allowSensitive}
             />}
           />
 
@@ -81,7 +78,6 @@ function App() {
             element={<NewOrEditTask
               isRecurringTaskPreset={true}
               editing={false}
-              allowSensitive={allowSensitive}
             />}
           />
 
@@ -90,7 +86,6 @@ function App() {
             element={<NewOrEditTask
               isRecurringTaskPreset={false}
               editing={false}
-              allowSensitive={allowSensitive}
             />}
           />
 
@@ -99,7 +94,6 @@ function App() {
             element={<NewOrEditTask
               isRecurringTaskPreset={false}
               editing={true}
-              allowSensitive={allowSensitive}
             />}
           />
 
@@ -107,7 +101,6 @@ function App() {
             path="/worldbuilding-collection"
             element={<WorldbuildingCollection
               reload={reload}
-              allowSensitive={allowSensitive}
             />}
           />
 
@@ -115,7 +108,6 @@ function App() {
             path="/new-world"
             element={<NewOrEditWorld
               editing={false}
-              allowSensitive={allowSensitive}
             />}
           />
 
@@ -123,7 +115,6 @@ function App() {
             path="/edit-world/:id"
             element={<NewOrEditWorld
               editing={true}
-              allowSensitive={allowSensitive}
             />}
           />
 
@@ -134,7 +125,6 @@ function App() {
               setReload={setReload}
               setPopup={setPopup}
               setPopupContent={setPopupContent}
-              allowSensitive={allowSensitive}
             />}
           />
 
@@ -143,7 +133,6 @@ function App() {
             element={<Settings
               setReload={setReload}
               settingsData={settings}
-              allowSensitive={allowSensitive}
             />}
           />
         </Routes>

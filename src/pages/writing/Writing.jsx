@@ -1,11 +1,10 @@
 import Header from '../../components/Header';
 import WorldbuildingOverview from '../../components/writing/WorldbuildingOverview';
 
-function Writing({allowSensitive}) {
-
+function Writing() {
   return (
     <>
-        <Header allowSensitive={allowSensitive}/>
+        <Header/>
         <div className="w-full h-auto px-[50px]">
           <WorldbuildingOverview/>
         </div>
