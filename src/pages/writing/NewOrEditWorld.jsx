@@ -51,13 +51,14 @@ function NewOrEditWorld({editing}) {
             return;
         }
 
+        var tempWorldId
         if (editing) {
-            await UpdateWorld(worldId, title, description, content);
+            tempWorldId = await UpdateWorld(worldId, title, description, content);
         } else {
-            await AddWorld(title, description, content);
+            tempWorldId = await AddWorld(title, description, content);
         }
-    
-        navigate("/worldbuilding-collection");
+
+        navigate(`/world/${tempWorldId}`);
     }
 
     return (
@@ -88,7 +89,7 @@ function NewOrEditWorld({editing}) {
                     <textarea
                     placeholder='Content...'
                     value={content}
-                    className='w-full min-h-[100px] border-2 rounded-[15px] p-[10px] border-[#D0D0D0] dark:border-black bg-[#F4F4F4] dark:bg-[#292929] text-black dark:text-white'
+                    className='w-full h-[500px] min-h-[100px] border-2 rounded-[15px] p-[10px] border-[#D0D0D0] dark:border-black bg-[#F4F4F4] dark:bg-[#292929] text-black dark:text-white'
                     onChange={(e) => setContent(e.target.value)}
                     />
                 </div>
@@ -96,12 +97,12 @@ function NewOrEditWorld({editing}) {
                 <p className='text-[#DF121B]'>{errText}</p>
                 <div className="flex flex-col md:flex-row md:w-[400px] justify-between">
                     <button
-                    className="w-[150px] h-[40px] border-2 rounded-[15px] border-[#D0D0D0] dark:border-black bg-white dark:bg-[#171717] text-black dark:text-white"
-                    onClick={() => {editing ? navigate(`/world/${worldId}`) : navigate("/worldbuilding-collection")}}
+                        className="w-[150px] h-[40px] border-2 rounded-[15px] border-[#D0D0D0] dark:border-black bg-white dark:bg-[#171717] text-black dark:text-white"
+                        onClick={() => {editing ? navigate(`/world/${worldId}`) : navigate("/worldbuilding-collection")}}
                     >Cancel</button>
                     <button
-                    className="w-[150px] h-[40px] rounded-[15px] mt-[20px] md:mt-[0] text-white bg-[#0096FF] dark:bg-[#0065AD]"
-                    onClick={() => HandleSubmit()}
+                        className="w-[150px] h-[40px] rounded-[15px] mt-[20px] md:mt-[0] text-white bg-[#0096FF] dark:bg-[#0065AD]"
+                        onClick={() => HandleSubmit()}
                     >Submit</button>
                 </div>
             </div>

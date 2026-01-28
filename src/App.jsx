@@ -14,6 +14,7 @@ import { db } from "./firebase";
 import WorldbuildingCollection from "./pages/writing/Writing";
 import NewOrEditWorld from "./pages/writing/NewOrEditWorld";
 import WorldInfo from "./pages/writing/WorldInfo";
+import ManageStory from "./pages/writing/ManageStory";
 
 function App() {
   const [popup, setPopup] = useState(false)
@@ -128,6 +129,16 @@ function App() {
             />}
           />
 
+          <Route
+            path="/story/:id"
+            element={<ManageStory
+              reload={reload}
+              setReload={setReload}
+              setPopup={setPopup}
+              setPopupContent={setPopupContent}
+            />}
+          />
+          
           <Route
             path="/settings"
             element={<Settings

@@ -1,5 +1,6 @@
-import { addDoc, collection, deleteDoc, doc, getDoc, updateDoc } from "firebase/firestore";
+import { addDoc, collection, deleteDoc, doc, getDoc, getDocs, query, updateDoc, where } from "firebase/firestore";
 import { db } from "../firebase";
+import { DeleteStory } from "./Stories";
 
 export async function GetWorldById (worldId) {
   try {
@@ -17,11 +18,12 @@ export async function GetWorldById (worldId) {
 
 export async function AddWorld(title, description, content) {
   try {
-    await addDoc(collection(db, "Worldbuilding"), {
+    const worldRef = await addDoc(collection(db, "Worldbuilding"), {
       title,
       description,
       content,
     })
+    return worldRef.id
   } catch (error) {
     console.error("Failed to add world: ", error);
   }
@@ -35,6 +37,7 @@ export async function UpdateWorld(worldId, title, description, content) {
       description,
       content,
     })
+    return worldRef.id
   } catch (error) {
     console.error("failed to update world: ", error);
   }
@@ -44,6 +47,22 @@ export async function DeleteWorld(docId) {
   if (!docId)
     console.error("no docId provided.");
   try {
+    const q = query(
+      collection(db, "Stories"),
+      where("worldId", "==", docId)
+    );
+    const StoriesSnap = await getDocs(q);
+    const StoriesData = StoriesSnap.docs.map(doc => ({
+      id: doc.id,
+      ...doc.data()
+    }));
+
+    if (StoriesData.length > 0){
+      StoriesData.forEach(story => {
+        DeleteStory(story.id)
+      });
+    }
+
     await deleteDoc(doc(db, "Worldbuilding", docId));
   } catch (error) {
     console.error("failed to Remove world: ", error);
