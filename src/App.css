@@ -11,6 +11,11 @@ body{
   margin: 0;
 }
 
+.no-tailwind,
+.no-tailwind * {
+  all: revert;
+}
+
 #root {
   height: 100vh;
   width: 100%;

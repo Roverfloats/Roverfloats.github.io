@@ -2,12 +2,6 @@ import { useEffect, useState } from 'react';
 import Header from '../../components/Header';
 import { useParams } from 'react-router-dom';
 import { GetStoryById, UpdateStory } from '../../endpoints/Stories';
-import PageNav from '../../components/writing/PageNav';
-import { FetchData } from '../../endpoints/General';
-import { collection, query, where } from 'firebase/firestore';
-import { db } from '../../firebase';
-import DeletePagePopup from '../../components/popups/DeletePagePopup';
-import { AddPage, UpdatePage } from '../../endpoints/Pages';
 import ManagePage from '../../components/writing/ManagePage';
 import DeleteStoryPopup from '../../components/popups/DeleteStoryPopup';
 

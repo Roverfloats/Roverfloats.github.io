@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { collection, query, where } from "firebase/firestore";
 import { db } from "../../firebase";
-
+import { Remarkable } from 'remarkable';
 import { FetchData } from "../../endpoints/General";
 import { AddPage, UpdatePage } from "../../endpoints/Pages";
 
@@ -9,6 +9,8 @@ import PageNav from "./PageNav";
 import DeletePagePopup from "../popups/DeletePagePopup";
 
 function ManagePage({ storyId, reload, setReload, setPopup, setPopupContent }) {
+    var md = new Remarkable();
+
     const [pageData, setPageData] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [editing, setEditing] = useState(false);
@@ -86,7 +88,7 @@ function ManagePage({ storyId, reload, setReload, setPopup, setPopupContent }) {
                             currentPage={currentPage}
                             setCurrentPage={setCurrentPage}
                         />
-                        {content}
+                        <div className="no-tailwind" dangerouslySetInnerHTML={{ __html: md.render(content) }}></div>
                         <PageNav
                             pageData={pageData}
                             highestPageNum={highestPageNum}
