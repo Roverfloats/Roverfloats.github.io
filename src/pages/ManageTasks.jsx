@@ -7,7 +7,7 @@ function Tasks({reload, setReload, setPopup, setPopupContent}) {
   return (
     <>
       <Header/>
-      <div className='flex flex-col md:flex-row w-full h-auto divide-solid md:divide-x-2 md:divide-y-0 divide-y-2 divide-[#D0D0D0]'>
+      <div className='flex flex-col md:flex-row w-full h-auto divide-solid md:divide-x-2 md:divide-y-0 divide-y-2 divide-[#D0D0D0] dark:divide-black'>
         <RecurringTaskPresetOverview
           reload={reload}
           setReload={setReload}
